@@ -1,5 +1,24 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+
+export function loginAdmin(
+  username: string,
+  pass: string,
+  callback: (data: any) => void,
+  fallback: () => void
+) {
+  axios
+    .post(`http://localhost:5000/auth/loginadmin`, {
+      username: username,
+      password: pass,
+    })
+    .then(({ data }) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      fallback();
+    });
+}
 
 export function loginC(
   nom: string,
@@ -41,12 +60,17 @@ export function loginO(
     });
 }
 
+export function logoutAdmin() {
+  localStorage.removeItem("access_token");
+  window.location.reload();
+}
+
 export function logoutClient() {
-  Cookies.remove("access_token_client");
+  localStorage.removeItem("access_token");
   window.location.reload();
 }
 
 export function logoutOuvrier() {
-  Cookies.remove("access_token_ouvrier");
+  localStorage.removeItem("access_token");
   window.location.reload();
 }
