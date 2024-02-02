@@ -106,7 +106,6 @@ const Contact = () => {
                 id="prenom"
                 label="Prénom"
                 name="prenom"
-                autoFocus
                 value=""
                 onChange={(e) => {}}
               />
