@@ -37,6 +37,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
       profession,
     };
     addOuvrier(newOuvrier, () => {
+      navigate("/");
       props.refresh();
       reset();
     });

@@ -50,7 +50,8 @@ const Login = () => {
         password,
       })
       .then(({ data }) => {
-        localStorage.getItem("access_token");
+        localStorage.setItem("access_token", data.user.prenom);
+        localStorage.setItem("user_id", data.user._id);
         console.log(data);
 
         if (isClient || isOuvrier) {

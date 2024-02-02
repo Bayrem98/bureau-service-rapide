@@ -9,50 +9,60 @@ import OuvriersTable from "./component/Administation/ouvrier/OuvrierTable";
 import RolePage from "./component/pages/Login&Register/RolePage";
 import RegisterClient from "./component/pages/Login&Register/RegisterClient";
 import RegisterOuvrier from "./component/pages/Login&Register/RegisterOuvrier";
-import Home from "./component/pages/Home";
 import Navbar from "./component/parts/Navbard";
 import ListSecteurPage from "./component/pages/ListSecteurPage";
 import Contact from "./component/pages/Contact";
+import Profile from "./component/pages/Profil";
+import MessagePage from "./component/pages/MessagePage";
+import Home from "./component/pages/Home";
+import Footer from "./component/parts/Footer";
 
 function App() {
   return (
     <>
       <Routes>
-        {" "}
         <Route path="/" element={<Login />} />
+        <Route path="/role" element={<RolePage />} />
+        <Route
+          path="/registerclient"
+          element={
+            <RegisterClient
+              refresh={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
+        />
+        <Route
+          path="/registerouvrier"
+          element={
+            <RegisterOuvrier
+              refresh={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          }
+        />
       </Routes>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/registerclient"
-            element={
-              <RegisterClient
-                refresh={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
-            }
-          />
-          <Route
-            path="/registerouvrier"
-            element={
-              <RegisterOuvrier
-                refresh={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
-            }
-          />
-          <Route path="/admintable" element={<AdminsTable />} />
-          <Route path="/clienttable" element={<ClientsTable />} />
-          <Route path="/ouvriertable" element={<OuvriersTable />} />
-          <Route path="/role" element={<RolePage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/list" element={<ListSecteurPage />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
+
+      {localStorage.getItem("access_token") && (
+        <>
+          <Navbar />
+          <div>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/admintable" element={<AdminsTable />} />
+              <Route path="/clienttable" element={<ClientsTable />} />
+              <Route path="/ouvriertable" element={<OuvriersTable />} />
+              <Route path="/profil" element={<Profile />} />
+              <Route path="/list" element={<ListSecteurPage />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/messagepage" element={<MessagePage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </>
+      )}
     </>
   );
 }

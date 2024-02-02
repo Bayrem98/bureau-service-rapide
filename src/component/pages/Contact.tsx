@@ -146,7 +146,7 @@ const Contact = () => {
         </Container>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d324.10394234298707!2d10.629031131681858!3d35.83467732550011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d35.8348425!2d10.6291741!4m3!3m2!1d35.8348425!2d10.6291741!5e0!3m2!1sfr!2stn!4v1706806939400!5m2!1sfr!2stn"
-          style={{ border: 0, width: "100%", height: 250 }}
+          style={{ border: 0, width: "100%", height: 215, marginBottom: 14 }}
           loading="lazy"
         ></iframe>
       </div>

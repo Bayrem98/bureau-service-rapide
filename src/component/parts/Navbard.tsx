@@ -15,7 +15,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { Badge } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -38,6 +38,15 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user_id");
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -149,18 +158,22 @@ function Navbar() {
               </Button>
             </Link>
           </Box>
-
-          <MenuItem>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-          </MenuItem>
+          <Link
+            to={"/messagepage"}
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <MenuItem>
+              <IconButton
+                size="large"
+                aria-label="show 4 new mails"
+                color="inherit"
+              >
+                <Badge badgeContent={4} color="error">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+            </MenuItem>
+          </Link>
           <MenuItem>
             <IconButton
               size="large"
@@ -176,7 +189,7 @@ function Navbar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/image/ryan.jpg" />
+                <Avatar alt="Remy Sharp" src="/image/avatar/ryan.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -195,10 +208,15 @@ function Navbar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <Link
+                to={"/profil"}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+              </Link>
+              <MenuItem onClick={Logout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
