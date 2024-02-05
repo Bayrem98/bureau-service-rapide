@@ -12,10 +12,13 @@ import RegisterOuvrier from "./component/pages/Login&Register/RegisterOuvrier";
 import Navbar from "./component/parts/Navbard";
 import ListSecteurPage from "./component/pages/ListSecteurPage";
 import Contact from "./component/pages/Contact";
-import Profile from "./component/pages/Profil";
+import Profile from "./component/pages/compteUser/Profil";
 import MessagePage from "./component/pages/MessagePage";
 import Home from "./component/pages/Home";
 import Footer from "./component/parts/Footer";
+import DemandeEnAttente from "./component/pages/compteUser/DemandeEnAttente";
+import DemandeCloturee from "./component/pages/compteUser/DemandeCloturee";
+import MesReclamations from "./component/pages/compteUser/MesReclamations";
 
 function App() {
   return (
@@ -55,6 +58,9 @@ function App() {
               <Route path="/clienttable" element={<ClientsTable />} />
               <Route path="/ouvriertable" element={<OuvriersTable />} />
               <Route path="/profil" element={<Profile />} />
+              <Route path="/demandeenattente" element={<DemandeEnAttente />} />
+              <Route path="/demandecloturee" element={<DemandeCloturee />} />
+              <Route path="/mesreclamations" element={<MesReclamations />} />
               <Route path="/list" element={<ListSecteurPage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
