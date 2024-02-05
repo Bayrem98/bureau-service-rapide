@@ -7,6 +7,7 @@ import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
 import OuvrierAdd from "./OuvrierAdd";
 import OuvrierDelete from "./OuvrierDelete";
+import OuvrierEdit from "./OuvrierEdit";
 
 interface Props {}
 
@@ -65,6 +66,10 @@ const OuvriersTable = (props: Props) => {
                     <td>{ouvrier.profession}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
+                        <OuvrierEdit
+                          ouvrier={ouvrier}
+                          refresh={() => getOuvriers(setOuvriers)}
+                        />
                         <OuvrierDelete
                           ouvrier={ouvrier}
                           refresh={() => getOuvriers(setOuvriers)}

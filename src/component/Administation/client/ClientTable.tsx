@@ -6,6 +6,7 @@ import Client from "../../../@types/Client";
 import ClientAdd from "./ClientAdd";
 import { getClients } from "../../../actions/Client/action";
 import ClientDelete from "./ClientDelete";
+import ClientEdit from "./ClientEdit";
 
 interface Props {}
 
@@ -62,6 +63,10 @@ const ClientsTable = (props: Props) => {
                     <td>{client.adresse}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
+                        <ClientEdit
+                          client={client}
+                          refresh={() => getClients(setClients)}
+                        />
                         <ClientDelete
                           client={client}
                           refresh={() => getClients(setClients)}
