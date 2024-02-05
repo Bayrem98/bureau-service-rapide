@@ -12,6 +12,7 @@ import { blue } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -629,7 +630,9 @@ const ListSecteurPage = () => {
             <Collapse in={expanded9} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography paragraph>Metier:</Typography>
-                <Typography>*Developpeur</Typography>
+                <Link to={"/developeur"} style={{ textDecoration: "none" }}>
+                  <Typography>*Developpeur</Typography>
+                </Link>
                 <Typography>*Designer</Typography>
                 <Typography>*Infographiste</Typography>
                 <Typography>*Réalisateur</Typography>
