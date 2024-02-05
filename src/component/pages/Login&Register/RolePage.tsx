@@ -33,13 +33,17 @@ const RolePage = () => {
                 <Button
                   variant="contained"
                   sx={{ mt: 3, mb: 5 }}
-                  style={{ marginRight: 70 }}
+                  style={{ marginRight: 70, width: 200, height: 61 }}
                 >
                   Vous etes Professionnel ?
                 </Button>
               </Link>
               <Link to={"/registerclient"}>
-                <Button variant="contained" sx={{ mt: 3, mb: 5 }}>
+                <Button
+                  variant="contained"
+                  sx={{ mt: 3, mb: 5 }}
+                  style={{ width: 200, height: 61 }}
+                >
                   Vous etes Client ?
                 </Button>
               </Link>

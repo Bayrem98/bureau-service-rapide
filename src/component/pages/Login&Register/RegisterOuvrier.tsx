@@ -8,10 +8,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import { HowToReg } from "@mui/icons-material";
 import { useState } from "react";
 import { addOuvrier } from "../../../actions/Ouvrier/action";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface OuvrierAddPropsType {
   refresh: () => void;
@@ -65,9 +65,9 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
-            <LockOutlined />
+            <HowToReg />
           </Avatar>
-          <Typography variant="h5">Register</Typography>
+          <Typography variant="h5">Inscription-Professionel</Typography>
           <Box sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -145,13 +145,8 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleRegister}
             >
-              Register
+              Inscrire
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/">Already have an account? Login</Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>

@@ -93,7 +93,7 @@ const Login = () => {
           <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
             <LockOutlined />
           </Avatar>
-          <Typography variant="h5">Login</Typography>
+          <Typography variant="h5">Connecter Vous</Typography>
           <Form>
             <Box sx={{ mt: 1 }}>
               <FormControl fullWidth>
@@ -143,7 +143,7 @@ const Login = () => {
                 fullWidth
                 id="password"
                 name="password"
-                label="Password"
+                label="Mot de passe"
                 type="password"
                 value={password}
                 onChange={(e) => {
@@ -157,14 +157,11 @@ const Login = () => {
                 sx={{ mt: 3, mb: 2 }}
                 onClick={handleLogin}
               >
-                <span>
-                  Connecte en tant que{""}
-                  {isClient ? "client" : isOuvrier ? "ouvrier" : "admin"}
-                </span>
+                <span>Connexion</span>
               </Button>
               <Grid container justifyContent={"flex-end"}>
                 <Grid item>
-                  <Link to="/role">Don't have an account? Register</Link>
+                  <Link to="/role">Vous n'avez pas de compte? s'inscrire</Link>
                 </Grid>
               </Grid>
             </Box>

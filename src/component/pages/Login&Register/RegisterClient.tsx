@@ -8,9 +8,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { LockOutlined } from "@mui/icons-material";
+import { HowToReg } from "@mui/icons-material";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addClient } from "../../../actions/Client/action";
 
 interface ClientAddPropsType {
@@ -62,9 +62,9 @@ const RegisterClient = (props: ClientAddPropsType) => {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
-            <LockOutlined />
+            <HowToReg />
           </Avatar>
-          <Typography variant="h5">Register</Typography>
+          <Typography variant="h5">Inscription-Client</Typography>
           <Box sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -95,7 +95,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Mot de passe"
                   type="password"
                   id="password"
                   value={password}
@@ -131,13 +131,8 @@ const RegisterClient = (props: ClientAddPropsType) => {
               sx={{ mt: 3, mb: 2 }}
               onClick={handleRegister}
             >
-              Register
+              Inscrire
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/">Already have an account? Login</Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
