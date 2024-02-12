@@ -1,0 +1,20 @@
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    cursor: pointer;
+  }
+  
+  /* Effet de survol de la bulle */
+  .whatsapp-bubble:hover {
+    background-color: #128C7E; /* Couleur de fond au survol */
+    transition: background-color 0.3s ease-in-out;
+  }

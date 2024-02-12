@@ -22,7 +22,6 @@ const Developeur = () => {
             position: "relative",
             overflow: { xs: "auto", sm: "initial" },
           }}
-         
         >
           <Card
             orientation="horizontal"
@@ -36,9 +35,7 @@ const Developeur = () => {
               },
               // make the card resizable for demo
               overflow: "auto",
-              resize: "horizontal",
             }}
-           
           >
             <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>
               <img
@@ -110,7 +107,7 @@ const Developeur = () => {
           }}
         >
           <Card
-           style={{marginLeft: 20}}
+            style={{ marginLeft: 20 }}
             orientation="horizontal"
             sx={{
               width: "100%",
@@ -122,7 +119,6 @@ const Developeur = () => {
               },
               // make the card resizable for demo
               overflow: "auto",
-              resize: "horizontal",
             }}
           >
             <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>

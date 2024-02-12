@@ -20,6 +20,9 @@ import DemandeEnAttente from "./component/pages/compteUser/DemandeEnAttente";
 import DemandeCloturee from "./component/pages/compteUser/DemandeCloturee";
 import MesReclamations from "./component/pages/compteUser/MesReclamations";
 import Developeur from "./component/pages/listeProfession/Developeur";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import 'react-international-phone/style.css';
 
 function App() {
   return (
@@ -69,6 +72,20 @@ function App() {
             </Routes>
           </div>
           <Footer />
+          <div className="whatsapp-bubble">
+            <a
+              href="https://web.whatsapp.com/send?phone=+21652368419"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faWhatsapp}
+                beat
+                size="xl"
+                style={{ color: "white" }}
+              />
+            </a>
+          </div>
         </>
       )}
     </>

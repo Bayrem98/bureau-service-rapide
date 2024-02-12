@@ -18,8 +18,24 @@ import {
   IconButton,
   TextField,
   Typography,
+  BaseTextFieldProps,
+  InputAdornment,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import { Card } from "reactstrap";
+import {
+  CountryIso2,
+  defaultCountries,
+  FlagImage,
+  parseCountry,
+  usePhoneInput,
+} from "react-international-phone";
+
+export interface MUIPhoneProps extends BaseTextFieldProps {
+  value: string;
+  onChange: (phone: string) => void;
+}
 
 const Profile = () => {
   const [nom, setNom] = useState<string>("");
@@ -27,6 +43,15 @@ const Profile = () => {
   const [password, setPassword] = useState<string>("");
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
+
+  const { inputRef, country, setCountry } = usePhoneInput({
+    defaultCountry: "us",
+    value: "",
+    countries: defaultCountries,
+    onChange: (data) => {
+      setNum_Tel(data.phone);
+    },
+  });
 
   return (
     <>
@@ -181,6 +206,83 @@ const Profile = () => {
                       name="num_tel"
                       value={num_tel}
                       onChange={(e) => setNum_Tel(e.target.value)}
+                      type="tel"
+                      inputRef={inputRef}
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment
+                            position="start"
+                            style={{ marginRight: "2px", marginLeft: "-8px" }}
+                          >
+                            <Select
+                              MenuProps={{
+                                style: {
+                                  height: "300px",
+                                  width: "360px",
+                                  top: "10px",
+                                  left: "-34px",
+                                },
+                                transformOrigin: {
+                                  vertical: "top",
+                                  horizontal: "left",
+                                },
+                              }}
+                              sx={{
+                                width: "max-content",
+                                // Remove default outline (display only on focus)
+                                fieldset: {
+                                  display: "none",
+                                },
+                                '&.Mui-focused:has(div[aria-expanded="false"])':
+                                  {
+                                    fieldset: {
+                                      display: "block",
+                                    },
+                                  },
+                                // Update default spacing
+                                ".MuiSelect-select": {
+                                  padding: "8px",
+                                  paddingRight: "24px !important",
+                                },
+                                svg: {
+                                  right: 0,
+                                },
+                              }}
+                              value={country.iso2}
+                              onChange={(e) =>
+                                setCountry(e.target.value as CountryIso2)
+                              }
+                              renderValue={(value) => (
+                                <FlagImage
+                                  iso2={value}
+                                  style={{ display: "flex" }}
+                                />
+                              )}
+                            >
+                              {defaultCountries.map((c) => {
+                                const country = parseCountry(c);
+                                return (
+                                  <MenuItem
+                                    key={country.iso2}
+                                    value={country.iso2}
+                                  >
+                                    <FlagImage
+                                      iso2={country.iso2}
+                                      style={{ marginRight: "8px" }}
+                                    />
+                                    <Typography marginRight="8px">
+                                      {country.name}
+                                    </Typography>
+                                    <Typography color="gray">
+                                      +{country.dialCode}
+                                    </Typography>
+                                  </MenuItem>
+                                );
+                              })}
+                            </Select>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12}>
