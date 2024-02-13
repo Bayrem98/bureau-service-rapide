@@ -90,7 +90,14 @@ const Developeur = () => {
                 sx={{ display: "flex", gap: 1.5, "& > button": { flex: 1 } }}
               >
                 <Button variant="outlined" color="neutral">
-                  Message
+                  <a
+                    href="https://wa.me/21652368419"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {" "}
+                    Message
+                  </a>
                 </Button>
                 <Button variant="solid" color="primary">
                   Appeler

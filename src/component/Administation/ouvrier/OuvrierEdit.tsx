@@ -30,6 +30,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
   const [num_tel, setNum_Tel] = useState<string>(ouvrier.num_tel);
   const [adresse, setAdresse] = useState<string>(ouvrier.adresse);
   const [profession, setProfession] = useState<string>(ouvrier.profession);
+  const [coverPath, setCoverPath] = useState<any>();
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -41,6 +42,27 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
     setPassword(event.target.value);
   };
 
+  const changeCoverHandler = (event: any) => {
+    const selectedCover = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", selectedCover);
+    fetch(`http://localhost:5000/upload/cover`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setCoverPath(
+          `${process.env.REACT_APP_API_URL}/upload/cover/${result.filename}`
+        );
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setCoverPath(undefined);
+      });
+  };
+
   const submit = () => {
     const newOuvrier = {
       _id: ouvrier._id,
@@ -50,6 +72,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
       num_tel,
       adresse,
       profession,
+      coverPath,
     };
     editOuvrier(newOuvrier, () => {
       refresh();
@@ -65,6 +88,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
     setNum_Tel(ouvrier.num_tel);
     setAdresse(ouvrier.adresse);
     setProfession(ouvrier.profession);
+    setCoverPath(ouvrier.coverPath);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -161,6 +185,15 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
                 name="adresse"
                 type="text"
                 onChange={(e) => setAdresse(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="adresse">Importer votre image</Label>
+              <Input
+                id="coverPath"
+                name="coverPath"
+                type="file"
+                onChange={changeCoverHandler}
               />
             </FormGroup>
           </Form>

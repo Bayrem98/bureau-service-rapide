@@ -108,6 +108,9 @@ function Navbar() {
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography textAlign="center">Contactez-nous</Typography>
               </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Parametres</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -155,6 +158,19 @@ function Navbar() {
                 }}
               >
                 Contactez-nous
+              </Button>
+            </Link>
+            <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: 13,
+                  paddingLeft: 10,
+                }}
+              >
+                Parametres
               </Button>
             </Link>
           </Box>

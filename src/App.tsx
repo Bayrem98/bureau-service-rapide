@@ -22,7 +22,7 @@ import MesReclamations from "./component/pages/compteUser/MesReclamations";
 import Developeur from "./component/pages/listeProfession/Developeur";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import 'react-international-phone/style.css';
+import "react-international-phone/style.css";
 
 function App() {
   return (
@@ -69,6 +69,7 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
               <Route path="/developeur" element={<Developeur />} />
+              <Route path="/ouvriertable" element={<OuvriersTable />} />
             </Routes>
           </div>
           <Footer />

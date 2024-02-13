@@ -47,6 +47,7 @@ const OuvriersTable = (props: Props) => {
               <th>Numéro de téléphone</th>
               <th>Adresse</th>
               <th>Profession</th>
+              <th>Photo</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -64,6 +65,13 @@ const OuvriersTable = (props: Props) => {
                     <td>{ouvrier.num_tel}</td>
                     <td>{ouvrier.adresse}</td>
                     <td>{ouvrier.profession}</td>
+                    <td>
+                      <img
+                        alt={ouvrier.nom}
+                        src={ouvrier.coverPath}
+                        width={50}
+                      />
+                    </td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
                         <OuvrierEdit
