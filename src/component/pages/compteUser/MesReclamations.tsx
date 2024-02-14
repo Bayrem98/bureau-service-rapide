@@ -3,9 +3,14 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
-import { VerifiedUser } from "@mui/icons-material";
+import {
+  AccountBox,
+  NoteAltRounded,
+  NotesRounded,
+  PaddingRounded,
+  VerifiedRounded,
+  VerifiedUser,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -34,7 +39,7 @@ const MesReclamations = () => {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  <SendIcon />
+                  <AccountBox color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Profil" />
               </ListItemButton>
@@ -46,7 +51,7 @@ const MesReclamations = () => {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  <DraftsIcon />
+                  <PaddingRounded color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Demande en attente" />
               </ListItemButton>
@@ -57,7 +62,7 @@ const MesReclamations = () => {
             >
               <ListItemButton>
                 <ListItemIcon>
-                  <DraftsIcon />
+                  <VerifiedRounded color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Demande cloturée" />
               </ListItemButton>
@@ -65,14 +70,14 @@ const MesReclamations = () => {
             <Link to={"/mesreclamations"} style={{ textDecoration: "none" }}>
               <ListItemButton>
                 <ListItemIcon>
-                  <DraftsIcon />
+                  <NoteAltRounded color="primary" />
                 </ListItemIcon>
                 <ListItemText primary="Mes reclamations" />
               </ListItemButton>
             </Link>
             <ListItemButton>
               <ListItemIcon>
-                <DraftsIcon />
+                <NotesRounded color="primary" />
               </ListItemIcon>
               <ListItemText primary="Mes avis" />
             </ListItemButton>
