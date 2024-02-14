@@ -70,6 +70,7 @@ function App() {
               <Route path="/messagepage" element={<MessagePage />} />
               <Route path="/developeur" element={<Developeur />} />
               <Route path="/ouvriertable" element={<OuvriersTable />} />
+              <Route path="/clienttable" element={<ClientsTable />} />
             </Routes>
           </div>
           <Footer />

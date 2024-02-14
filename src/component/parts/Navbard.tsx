@@ -109,7 +109,10 @@ function Navbar() {
                 <Typography textAlign="center">Contactez-nous</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Parametres</Typography>
+                <Typography textAlign="center">Parametres-1</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">Parametres-2</Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -170,7 +173,20 @@ function Navbar() {
                   paddingLeft: 10,
                 }}
               >
-                Parametres
+                Parametres-1
+              </Button>
+            </Link>
+            <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontSize: 13,
+                  paddingLeft: 10,
+                }}
+              >
+                Parametres-2
               </Button>
             </Link>
           </Box>

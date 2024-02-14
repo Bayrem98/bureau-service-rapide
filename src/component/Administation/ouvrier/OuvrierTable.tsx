@@ -48,6 +48,7 @@ const OuvriersTable = (props: Props) => {
               <th>Adresse</th>
               <th>Profession</th>
               <th>Photo</th>
+              <th>Num-CIN</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -72,6 +73,7 @@ const OuvriersTable = (props: Props) => {
                         width={50}
                       />
                     </td>
+                    <td>{ouvrier.num_cin}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
                         <OuvrierEdit
@@ -88,7 +90,7 @@ const OuvriersTable = (props: Props) => {
                 ))
             ) : (
               <tr>
-                <td colSpan={7} className="text-center">
+                <td colSpan={9} className="text-center">
                   <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                   <br />
                   Pas des données...

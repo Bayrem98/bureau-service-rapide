@@ -29,6 +29,8 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
   const [password, setPassword] = useState<string>(client.password);
   const [num_tel, setNum_Tel] = useState<string>(client.num_tel);
   const [adresse, setAdresse] = useState<string>(client.adresse);
+  const [coverPath, setCoverPath] = useState<any>();
+  const [num_cin, setNum_cin] = useState<number>();
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -40,6 +42,25 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
     setPassword(event.target.value);
   };
 
+  const changeCoverHandler = (event: any) => {
+    const selectedCover = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", selectedCover);
+    fetch(`http://localhost:5000/upload/cover`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setCoverPath(`http://localhost:5000/upload/cover/${result.filename}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setCoverPath(undefined);
+      });
+  };
+
   const submit = () => {
     const newClient = {
       _id: client._id,
@@ -48,6 +69,8 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
       password,
       num_tel,
       adresse,
+      coverPath,
+      num_cin,
     };
     editClient(newClient, () => {
       refresh();
@@ -62,6 +85,8 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
     setPassword(client.password);
     setNum_Tel(client.num_tel);
     setAdresse(client.adresse);
+    setCoverPath(client.coverPath);
+    setNum_cin(0);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -158,6 +183,25 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
                 name="adresse"
                 type="text"
                 onChange={(e) => setAdresse(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="adresse">Importer votre image</Label>
+              <Input
+                id="coverPath"
+                name="coverPath"
+                type="file"
+                onChange={changeCoverHandler}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="num_tel">Numero de CIN</Label>
+              <Input
+                value={num_cin}
+                id="num_cin"
+                name="num_cin"
+                type="number"
+                onChange={(e) => setNum_cin(parseInt(e.target.value))}
               />
             </FormGroup>
           </Form>

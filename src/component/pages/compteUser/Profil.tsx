@@ -23,7 +23,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { Card } from "reactstrap";
+import { Card, Input } from "reactstrap";
 import {
   CountryIso2,
   defaultCountries,
@@ -137,12 +137,18 @@ const Profile = () => {
                 style={{ width: 200, height: 200 }}
               />
             </IconButton>
-            <Button
+            <Input
+              type="file"
               variant="contained"
-              style={{ marginTop: 30, marginLeft: 10, marginRight: 10 }}
+              style={{
+                marginTop: 20,
+                marginLeft: 50,
+                marginRight: 10,
+                width: 145,
+              }}
             >
               Importer Votre photo
-            </Button>
+            </Input>
           </Card>
           <Container maxWidth="xs">
             <CssBaseline />

@@ -31,6 +31,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
   const [adresse, setAdresse] = useState<string>(ouvrier.adresse);
   const [profession, setProfession] = useState<string>(ouvrier.profession);
   const [coverPath, setCoverPath] = useState<any>();
+  const [num_cin, setNum_cin] = useState<number>();
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -53,9 +54,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setCoverPath(
-          `${process.env.REACT_APP_API_URL}/upload/cover/${result.filename}`
-        );
+        setCoverPath(`http://localhost:5000/upload/cover/${result.filename}`);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -73,6 +72,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
       adresse,
       profession,
       coverPath,
+      num_cin,
     };
     editOuvrier(newOuvrier, () => {
       refresh();
@@ -89,6 +89,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
     setAdresse(ouvrier.adresse);
     setProfession(ouvrier.profession);
     setCoverPath(ouvrier.coverPath);
+    setNum_cin(0);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -194,6 +195,16 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
                 name="coverPath"
                 type="file"
                 onChange={changeCoverHandler}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="num_tel">Numero de CIN</Label>
+              <Input
+                value={num_cin}
+                id="num_cin"
+                name="num_cin"
+                type="number"
+                onChange={(e) => setNum_cin(parseInt(e.target.value))}
               />
             </FormGroup>
           </Form>

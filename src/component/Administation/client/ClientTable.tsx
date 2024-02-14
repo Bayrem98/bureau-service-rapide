@@ -45,6 +45,8 @@ const ClientsTable = (props: Props) => {
               <th>password</th>
               <th>Numéro de téléphone</th>
               <th>adresse</th>
+              <th>Photo</th>
+              <th>Num-CIN</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -61,6 +63,10 @@ const ClientsTable = (props: Props) => {
                     <td>{client.password}</td>
                     <td>{client.num_tel}</td>
                     <td>{client.adresse}</td>
+                    <td>
+                      <img src={client.coverPath} alt={client.nom} width={50} />
+                    </td>
+                    <td>{client.num_cin}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
                         <ClientEdit
@@ -77,7 +83,7 @@ const ClientsTable = (props: Props) => {
                 ))
             ) : (
               <tr>
-                <td colSpan={5} className="text-center">
+                <td colSpan={7} className="text-center">
                   <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                   <br />
                   Pas des données...
