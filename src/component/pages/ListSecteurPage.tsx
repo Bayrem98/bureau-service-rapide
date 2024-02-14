@@ -9,10 +9,10 @@ import Avatar from "@mui/material/Avatar";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { RemoveRedEyeRounded } from "@mui/icons-material";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -117,9 +117,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded}
                 onClick={handleExpandClick}
@@ -131,10 +129,14 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
                 <Typography>*Macon / Couvreur</Typography>
                 <Typography>*Peintre en bâtiment</Typography>
-                <Typography>*Menuisier</Typography>
+                <Link
+                  to={"/professionel/menuisier"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Menuisier</Typography>
+                </Link>
                 <Typography>*Charpentier</Typography>
                 <Typography>*Serrurier</Typography>
               </CardContent>
@@ -171,9 +173,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded1}
                 onClick={handleExpandClick1}
@@ -185,11 +185,20 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded1} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
-                <Typography>*Livreur</Typography>
+                <Link
+                  to={"/professionel/livreur"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Livreur</Typography>
+                </Link>
                 <Typography>*Transporteur</Typography>
                 <Typography>*Chauffeur Taxi, Routier</Typography>
-                <Typography>*Déménageur</Typography>
+                <Link
+                  to={"/professionel/demenageur"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Déménageur</Typography>
+                </Link>
                 <Typography>*Dépanneur-remorqueur</Typography>
               </CardContent>
             </Collapse>
@@ -226,9 +235,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded2}
                 onClick={handleExpandClick2}
@@ -240,11 +247,20 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded2} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
                 <Typography>*Auxiliaire de vie</Typography>
                 <Typography>*Aide-Soignant</Typography>
-                <Typography>*Infirmier</Typography>
-                <Typography>*Medecin</Typography>
+                <Link
+                  to={"/professionel/infirmier"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Infirmier</Typography>
+                </Link>
+                <Link
+                  to={"/professionel/medecin"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Medecin</Typography>
+                </Link>
               </CardContent>
             </Collapse>
           </Card>
@@ -279,9 +295,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded3}
                 onClick={handleExpandClick3}
@@ -293,12 +307,26 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded3} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
                 <Typography>*Cordonnier</Typography>
-                <Typography>*Coiffeur</Typography>
-                <Typography>*Photographe</Typography>
+                <Link
+                  to={"/professionel/coiffeur"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Coiffeur</Typography>
+                </Link>
+                <Link
+                  to={"/professionel/photographe"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Photographe</Typography>
+                </Link>
                 <Typography>*Architecte</Typography>
-                <Typography>*DJ</Typography>
+                <Link
+                  to={"/professionel/dj"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*DJ</Typography>
+                </Link>
               </CardContent>
             </Collapse>
           </Card>
@@ -335,9 +363,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded4}
                 onClick={handleExpandClick4}
@@ -349,12 +375,31 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded4} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
-                <Typography>*Avocat</Typography>
+                <Link
+                  to={"/professionel/avocat"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Avocat</Typography>
+                </Link>
                 <Typography>*Notaire</Typography>
-                <Typography>*Juriste</Typography>
-                <Typography>*Écrivain</Typography>
-                <Typography>*Journaliste</Typography>
+                <Link
+                  to={"/professionel/juriste"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Juriste</Typography>
+                </Link>
+                <Link
+                  to={"/professionel/ecrivain"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Écrivain</Typography>
+                </Link>
+                <Link
+                  to={"/professionel/journaliste"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Journaliste</Typography>
+                </Link>
               </CardContent>
             </Collapse>
           </Card>
@@ -400,9 +445,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded5}
                 onClick={handleExpandClick5}
@@ -414,7 +457,6 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded5} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
                 <Typography>*Conseiller d'agricole</Typography>
                 <Typography>*Jardinier/fleuriste</Typography>
                 <Typography>*Soigneur animalier</Typography>
@@ -453,9 +495,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded6}
                 onClick={handleExpandClick6}
@@ -467,8 +507,12 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded6} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
-                <Typography>*Cuisinier/Boulanger</Typography>
+                <Link
+                  to={"/professionel/cuisinier"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Cuisinier</Typography>
+                </Link>
                 <Typography>*Guide touristique</Typography>
                 <Typography>*Serveur</Typography>
                 <Typography>*Employé de restaurant</Typography>
@@ -508,9 +552,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded7}
                 onClick={handleExpandClick7}
@@ -522,11 +564,20 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded7} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
-                <Typography>*Plombier</Typography>
+                <Link
+                  to={"/professionel/plombier"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Plombier</Typography>
+                </Link>
                 <Typography>*Chauffagiste</Typography>
                 <Typography>*Mécanicien</Typography>
-                <Typography>*Electrecien</Typography>
+                <Link
+                  to={"/professionel/electrecien"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Electrecien</Typography>
+                </Link>
               </CardContent>
             </Collapse>
           </Card>
@@ -561,9 +612,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded8}
                 onClick={handleExpandClick8}
@@ -575,11 +624,20 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded8} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
                 <Typography>*Éducateur sportif</Typography>
                 <Typography>*Enseignant</Typography>
-                <Typography>*Professeur</Typography>
-                <Typography>*Formateur</Typography>
+                <Link
+                  to={"/professionel/professeur"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Professeur</Typography>
+                </Link>
+                <Link
+                  to={"/professionel/formateur"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Formateur</Typography>
+                </Link>
                 <Typography>*Moniteur d'auto-école</Typography>
               </CardContent>
             </Collapse>
@@ -615,9 +673,7 @@ const ListSecteurPage = () => {
               </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites" color="error">
-                <FavoriteIcon />
-              </IconButton>
+              <RemoveRedEyeRounded color="primary" />
               <ExpandMore
                 expand={expanded9}
                 onClick={handleExpandClick9}
@@ -629,12 +685,19 @@ const ListSecteurPage = () => {
             </CardActions>
             <Collapse in={expanded9} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography paragraph>Metier:</Typography>
-                <Link to={"/developeur"} style={{ textDecoration: "none" }}>
+                <Link
+                  to={"/professionel/developpeur"}
+                  style={{ textDecoration: "none" }}
+                >
                   <Typography>*Developpeur</Typography>
                 </Link>
                 <Typography>*Designer</Typography>
-                <Typography>*Infographiste</Typography>
+                <Link
+                  to={"/professionel/infographiste"}
+                  style={{ textDecoration: "none" }}
+                >
+                  <Typography>*Infographiste</Typography>
+                </Link>
                 <Typography>*Réalisateur</Typography>
                 <Typography>*Webmaster</Typography>
               </CardContent>

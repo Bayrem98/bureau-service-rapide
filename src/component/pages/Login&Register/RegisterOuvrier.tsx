@@ -5,6 +5,9 @@ import {
   Container,
   CssBaseline,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,6 +15,29 @@ import { HowToReg } from "@mui/icons-material";
 import { useState } from "react";
 import { addOuvrier } from "../../../actions/Ouvrier/action";
 import { useNavigate } from "react-router-dom";
+
+const fieldss = [
+  { key: "jardinier", name: "Jardinier" },
+  { key: "menuisier", name: "Menuisier" },
+  { key: "livreur", name: "Livreur" },
+  { key: "demenageur", name: "Déménageur" },
+  { key: "cuisinier", name: "Cuisinier" },
+  { key: "infirmier", name: "Infirmier" },
+  { key: "medecin", name: "Medecin" },
+  { key: "plombier", name: "Plombier" },
+  { key: "electrecien", name: "Electrecien" },
+  { key: "coiffeur", name: "Coiffeur" },
+  { key: "photographe", name: "Photographe" },
+  { key: "professeur", name: "Professeur" },
+  { key: "formateur", name: "Formateur" },
+  { key: "developpeur", name: "Dévéloppeur" },
+  { key: "infographiste", name: "Infographiste" },
+  { key: "avocat", name: "Avocat" },
+  { key: "juriste", name: "Juriste" },
+  { key: "journaliste", name: "Journaliste" },
+  { key: "ecrivain", name: "Écrivain" },
+  { key: "dj", name: "DJ" },
+];
 
 interface OuvrierAddPropsType {
   refresh: () => void;
@@ -23,7 +49,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
   const [password, setPassword] = useState<string>("");
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
-  const [profession, setProfession] = useState<string>("");
+  const [profession, setProfession] = useState<string>(fieldss[0].key);
 
   const navigate = useNavigate();
 
@@ -49,7 +75,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
     setPassword("");
     setNum_Tel("");
     setAdresse("");
-    setProfession("");
+    setProfession(fieldss[0].key);
   };
 
   return (
@@ -128,15 +154,23 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <InputLabel>Profession</InputLabel>
+                <Select
                   required
                   fullWidth
                   id="profession"
                   label="Profession"
                   name="profession"
+                  autoFocus
                   value={profession}
                   onChange={(e) => setProfession(e.target.value)}
-                />
+                >
+                  {fieldss.map((f) => (
+                    <MenuItem key={f.key} value={f.key}>
+                      {f.name}
+                    </MenuItem>
+                  ))}
+                </Select>
               </Grid>
             </Grid>
             <Button

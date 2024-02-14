@@ -14,6 +14,29 @@ import {
 } from "reactstrap";
 import { addOuvrier } from "../../../actions/Ouvrier/action";
 
+const fieldss = [
+  { key: "jardinier", name: "Jardinier" },
+  { key: "menuisier", name: "Menuisier" },
+  { key: "livreur", name: "Livreur" },
+  { key: "demenageur", name: "Déménageur" },
+  { key: "cuisinier", name: "Cuisinier" },
+  { key: "infirmier", name: "Infirmier" },
+  { key: "medecin", name: "Medecin" },
+  { key: "plombier", name: "Plombier" },
+  { key: "electrecien", name: "Electrecien" },
+  { key: "coiffeur", name: "Coiffeur" },
+  { key: "photographe", name: "Photographe" },
+  { key: "professeur", name: "Professeur" },
+  { key: "formateur", name: "Formateur" },
+  { key: "developpeur", name: "Dévéloppeur" },
+  { key: "infographiste", name: "Infographiste" },
+  { key: "avocat", name: "Avocat" },
+  { key: "juriste", name: "Juriste" },
+  { key: "journaliste", name: "Journaliste" },
+  { key: "ecrivain", name: "Écrivain" },
+  { key: "dj", name: "DJ" },
+];
+
 interface OuvrierAddPropsType {
   refresh: () => void;
 }
@@ -26,7 +49,7 @@ const OuvrierAdd = (props: OuvrierAddPropsType) => {
   const [password, setPassword] = useState<string>("");
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
-  const [profession, setProfession] = useState<string>("");
+  const [profession, setProfession] = useState<string>(fieldss[0].key);
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -60,7 +83,7 @@ const OuvrierAdd = (props: OuvrierAddPropsType) => {
     setPassword("");
     setNum_Tel("");
     setAdresse("");
-    setProfession("");
+    setProfession(fieldss[0].key);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -168,9 +191,15 @@ const OuvrierAdd = (props: OuvrierAddPropsType) => {
                 value={profession}
                 id="profession"
                 name="profession"
-                type="text"
+                type="select"
                 onChange={(e) => setProfession(e.target.value)}
-              />
+              >
+                {fieldss.map((f) => (
+                  <option key={f.key} value={f.key}>
+                    {f.name}
+                  </option>
+                ))}
+              </Input>
             </FormGroup>
           </Form>
         </ModalBody>

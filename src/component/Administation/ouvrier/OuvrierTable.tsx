@@ -16,7 +16,7 @@ const OuvriersTable = (props: Props) => {
   const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {
-    getOuvriers(setOuvriers);
+    getOuvriers(null, setOuvriers);
   }, []);
 
   return (
@@ -34,7 +34,7 @@ const OuvriersTable = (props: Props) => {
             onChange={(e) => setFilter(e.target.value)}
           />
         </div>
-        <OuvrierAdd refresh={() => getOuvriers(setOuvriers)} />
+        <OuvrierAdd refresh={() => getOuvriers(null, setOuvriers)} />
       </div>
       <br />
       <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 420 }}>
@@ -78,11 +78,11 @@ const OuvriersTable = (props: Props) => {
                       <ButtonGroup>
                         <OuvrierEdit
                           ouvrier={ouvrier}
-                          refresh={() => getOuvriers(setOuvriers)}
+                          refresh={() => getOuvriers(null, setOuvriers)}
                         />
                         <OuvrierDelete
                           ouvrier={ouvrier}
-                          refresh={() => getOuvriers(setOuvriers)}
+                          refresh={() => getOuvriers(null, setOuvriers)}
                         />
                       </ButtonGroup>
                     </td>

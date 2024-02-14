@@ -1,9 +1,13 @@
 import axios from "axios";
 import Ouvrier from "../../@types/Ouvrier";
 
-export function getOuvriers(callback: (data: Ouvrier[]) => void) {
+export function getOuvriers(
+  query: { nom?: string; profession?: string } | null,
+  callback: (data: Ouvrier[]) => void
+) {
   axios
     .get(`http://localhost:5000/ouvrier`, {
+      params: query,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -11,8 +15,8 @@ export function getOuvriers(callback: (data: Ouvrier[]) => void) {
     .then(({ data }) => {
       callback(data);
     })
-    .catch((error) => {
-      console.error(error);
+    .catch((e) => {
+      console.error(e);
     });
 }
 

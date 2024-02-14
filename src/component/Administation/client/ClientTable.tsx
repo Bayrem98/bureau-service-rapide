@@ -83,7 +83,7 @@ const ClientsTable = (props: Props) => {
                 ))
             ) : (
               <tr>
-                <td colSpan={7} className="text-center">
+                <td colSpan={8} className="text-center">
                   <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                   <br />
                   Pas des données...

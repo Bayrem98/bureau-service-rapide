@@ -19,10 +19,10 @@ import Footer from "./component/parts/Footer";
 import DemandeEnAttente from "./component/pages/compteUser/DemandeEnAttente";
 import DemandeCloturee from "./component/pages/compteUser/DemandeCloturee";
 import MesReclamations from "./component/pages/compteUser/MesReclamations";
-import Developeur from "./component/pages/listeProfession/Developeur";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import "react-international-phone/style.css";
+import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelProfil";
 
 function App() {
   return (
@@ -68,9 +68,13 @@ function App() {
               <Route path="/list" element={<ListSecteurPage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
-              <Route path="/developeur" element={<Developeur />} />
               <Route path="/ouvriertable" element={<OuvriersTable />} />
               <Route path="/clienttable" element={<ClientsTable />} />
+
+              <Route
+                path="/professionel/:prof"
+                element={<ProfessionelProfil />}
+              />
             </Routes>
           </div>
           <Footer />
