@@ -15,6 +15,29 @@ import {
   ModalHeader,
 } from "reactstrap";
 
+const fieldss = [
+  { key: "jardinier", name: "Jardinier" },
+  { key: "menuisier", name: "Menuisier" },
+  { key: "livreur", name: "Livreur" },
+  { key: "demenageur", name: "Déménageur" },
+  { key: "cuisinier", name: "Cuisinier" },
+  { key: "infirmier", name: "Infirmier" },
+  { key: "medecin", name: "Medecin" },
+  { key: "plombier", name: "Plombier" },
+  { key: "electrecien", name: "Electrecien" },
+  { key: "coiffeur", name: "Coiffeur" },
+  { key: "photographe", name: "Photographe" },
+  { key: "professeur", name: "Professeur" },
+  { key: "formateur", name: "Formateur" },
+  { key: "developpeur", name: "Dévéloppeur" },
+  { key: "infographiste", name: "Infographiste" },
+  { key: "avocat", name: "Avocat" },
+  { key: "juriste", name: "Juriste" },
+  { key: "journaliste", name: "Journaliste" },
+  { key: "ecrivain", name: "Écrivain" },
+  { key: "dj", name: "DJ" },
+];
+
 interface OuvrierEditPropsType {
   ouvrier: Ouvrier;
   refresh: () => void;
@@ -29,7 +52,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
   const [password, setPassword] = useState<string>(ouvrier.password);
   const [num_tel, setNum_Tel] = useState<string>(ouvrier.num_tel);
   const [adresse, setAdresse] = useState<string>(ouvrier.adresse);
-  const [profession, setProfession] = useState<string>(ouvrier.profession);
+  const [profession, setProfession] = useState<string>(fieldss[0].key);
   const [coverPath, setCoverPath] = useState<any>();
   const [num_cin, setNum_cin] = useState<number>();
 
@@ -87,7 +110,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
     setPassword(ouvrier.password);
     setNum_Tel(ouvrier.num_tel);
     setAdresse(ouvrier.adresse);
-    setProfession(ouvrier.profession);
+    setProfession(fieldss[0].key);
     setCoverPath(ouvrier.coverPath);
     setNum_cin(0);
   };
@@ -187,6 +210,22 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
                 type="text"
                 onChange={(e) => setAdresse(e.target.value)}
               />
+            </FormGroup>
+            <FormGroup>
+              <Label for="profession">Profession</Label>
+              <Input
+                value={profession}
+                id="profession"
+                name="profession"
+                type="select"
+                onChange={(e) => setProfession(e.target.value)}
+              >
+                {fieldss.map((f) => (
+                  <option key={f.key} value={f.key}>
+                    {f.name}
+                  </option>
+                ))}
+              </Input>
             </FormGroup>
             <FormGroup>
               <Label for="coverPath">Importer votre image</Label>

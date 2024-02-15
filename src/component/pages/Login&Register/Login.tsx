@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 import { Form } from "reactstrap";
 
 const Login = () => {
-  const [nom, setNom] = useState<string>("");
+  const [num_tel, setNum_tel] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isClient, setIsClient] = useState(true);
@@ -46,7 +46,7 @@ const Login = () => {
 
     axios
       .post(`http://localhost:5000/auth/${authEndpoint}`, {
-        nom,
+        num_tel,
         password,
       })
       .then(({ data }) => {
@@ -129,12 +129,12 @@ const Login = () => {
                 margin="normal"
                 required
                 fullWidth
-                id="nom"
-                label="Nom"
-                name="nom"
+                id="num_tel"
+                label="Numéro de téléphone"
+                name="num_tel"
                 autoFocus
-                value={nom}
-                onChange={(e) => setNom(e.target.value)}
+                value={num_tel}
+                onChange={(e) => setNum_tel(e.target.value)}
               />
 
               <TextField

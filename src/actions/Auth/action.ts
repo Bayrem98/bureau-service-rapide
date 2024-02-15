@@ -21,14 +21,14 @@ export function loginAdmin(
 }
 
 export function loginC(
-  nom: string,
+  num_tel: string,
   pass: string,
   callback: (data: any) => void,
   fallback: () => void
 ) {
   axios
     .post(`http://localhost:5000/auth/login`, {
-      nom: nom,
+      num_tel: num_tel,
       password: pass,
     })
     .then(({ data }) => {
@@ -41,14 +41,14 @@ export function loginC(
 }
 
 export function loginO(
-  nom: string,
+  num_tel: string,
   pass: string,
   callback: (data: any) => void,
   fallback: () => void
 ) {
   axios
     .post(`http://localhost:5000/auth/logina`, {
-      nom: nom,
+      num_tel: num_tel,
       password: pass,
     })
     .then(({ data }) => {
