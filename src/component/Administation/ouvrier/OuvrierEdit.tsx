@@ -189,7 +189,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="adresse">Importer votre image</Label>
+              <Label for="coverPath">Importer votre image</Label>
               <Input
                 id="coverPath"
                 name="coverPath"

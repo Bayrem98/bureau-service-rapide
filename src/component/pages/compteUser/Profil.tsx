@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ListSubheader from "@mui/material/ListSubheader";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -22,42 +22,40 @@ import {
   CssBaseline,
   Grid,
   IconButton,
-  TextField,
   Typography,
-  BaseTextFieldProps,
-  InputAdornment,
-  MenuItem,
-  Select,
 } from "@mui/material";
-import { Card, Input } from "reactstrap";
-import {
-  CountryIso2,
-  defaultCountries,
-  FlagImage,
-  parseCountry,
-  usePhoneInput,
-} from "react-international-phone";
-
-export interface MUIPhoneProps extends BaseTextFieldProps {
-  value: string;
-  onChange: (phone: string) => void;
-}
+import { Card } from "reactstrap";
+import Client from "../../../@types/Client";
+import Ouvrier from "../../../@types/Ouvrier";
+import Admin from "../../../@types/Admin";
+import { getClient } from "../../../actions/Client/action";
+import { getOuvrier } from "../../../actions/Ouvrier/action";
+import { getAdmin } from "../../../actions/Admin/action";
 
 const Profile = () => {
-  const [nom, setNom] = useState<string>("");
-  const [prenom, setPrenom] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [num_tel, setNum_Tel] = useState<string>("");
-  const [adresse, setAdresse] = useState<string>("");
+  const [client, setClient] = useState<Client | null>(null);
+  const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
+  const [admin, setAdmin] = useState<Admin | null>(null);
 
-  const { inputRef, country, setCountry } = usePhoneInput({
-    defaultCountry: "us",
-    value: "",
-    countries: defaultCountries,
-    onChange: (data) => {
-      setNum_Tel(data.phone);
-    },
-  });
+  const userId = localStorage.getItem("user_id");
+
+  useEffect(() => {
+    if (userId) {
+      getClient(userId, setClient);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      getOuvrier(userId, setOuvrier);
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      getAdmin(userId, setAdmin);
+    }
+  }, [userId]);
 
   return (
     <>
@@ -123,15 +121,16 @@ const Profile = () => {
             </ListItemButton>
           </List>
         </div>
+
         <div
           className="d-flex justify-content-between"
           style={{ marginTop: -100, marginRight: 150, marginBottom: 200 }}
         >
           <Card
             style={{
-              marginTop: 270,
+              marginTop: 260,
               width: 250,
-              height: 300,
+              height: 220,
               borderColor: "#1976d2",
               marginRight: 30,
             }}
@@ -139,22 +138,10 @@ const Profile = () => {
             <IconButton style={{ marginLeft: 15, marginRight: 15 }}>
               <Avatar
                 alt="Remy Sharp"
-                src="/image/avatar/ryan.jpg"
+                src={client?.coverPath}
                 style={{ width: 200, height: 200 }}
               />
             </IconButton>
-            <Input
-              type="file"
-              variant="contained"
-              style={{
-                marginTop: 20,
-                marginLeft: 50,
-                marginRight: 10,
-                width: 145,
-              }}
-            >
-              Importer Votre photo
-            </Input>
           </Card>
           <Container maxWidth="xs">
             <CssBaseline />
@@ -170,147 +157,32 @@ const Profile = () => {
                 <HowToReg />
               </Avatar>
               <Typography variant="h5">
-                Tu peux modifier vous données
+                Mon Compte
               </Typography>
               <Box sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
-                      name="nom"
-                      required
-                      fullWidth
-                      id="nom"
-                      label="Nom"
-                      autoFocus
-                      value={nom}
-                      onChange={(e) => setNom(e.target.value)}
-                    />
+                    Nom: {client?.nom}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="prenom"
-                      label="Prénom"
-                      name="prenom"
-                      value={prenom}
-                      onChange={(e) => setPrenom(e.target.value)}
-                    />
+                    {" "}
+                    Prénom: {client?.prenom}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="password"
-                      label="Mot de passe"
-                      type="password"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
+                    {" "}
+                    Numéro de téléphone: {client?.num_tel}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="num_tel"
-                      label="Numéro de téléphone"
-                      name="num_tel"
-                      value={num_tel}
-                      onChange={(e) => setNum_Tel(e.target.value)}
-                      type="tel"
-                      inputRef={inputRef}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment
-                            position="start"
-                            style={{ marginRight: "2px", marginLeft: "-8px" }}
-                          >
-                            <Select
-                              MenuProps={{
-                                style: {
-                                  height: "300px",
-                                  width: "360px",
-                                  top: "10px",
-                                  left: "-34px",
-                                },
-                                transformOrigin: {
-                                  vertical: "top",
-                                  horizontal: "left",
-                                },
-                              }}
-                              sx={{
-                                width: "max-content",
-                                // Remove default outline (display only on focus)
-                                fieldset: {
-                                  display: "none",
-                                },
-                                '&.Mui-focused:has(div[aria-expanded="false"])':
-                                  {
-                                    fieldset: {
-                                      display: "block",
-                                    },
-                                  },
-                                // Update default spacing
-                                ".MuiSelect-select": {
-                                  padding: "8px",
-                                  paddingRight: "24px !important",
-                                },
-                                svg: {
-                                  right: 0,
-                                },
-                              }}
-                              value={country.iso2}
-                              onChange={(e) =>
-                                setCountry(e.target.value as CountryIso2)
-                              }
-                              renderValue={(value) => (
-                                <FlagImage
-                                  iso2={value}
-                                  style={{ display: "flex" }}
-                                />
-                              )}
-                            >
-                              {defaultCountries.map((c) => {
-                                const country = parseCountry(c);
-                                return (
-                                  <MenuItem
-                                    key={country.iso2}
-                                    value={country.iso2}
-                                  >
-                                    <FlagImage
-                                      iso2={country.iso2}
-                                      style={{ marginRight: "8px" }}
-                                    />
-                                    <Typography marginRight="8px">
-                                      {country.name}
-                                    </Typography>
-                                    <Typography color="gray">
-                                      +{country.dialCode}
-                                    </Typography>
-                                  </MenuItem>
-                                );
-                              })}
-                            </Select>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    {" "}
+                    Numéro de CIN: {client?.num_cin}
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="adresse"
-                      label="Address"
-                      name="adresse"
-                      value={adresse}
-                      onChange={(e) => setAdresse(e.target.value)}
-                    />
+                    Adresse: {client?.adresse}
                   </Grid>
                 </Grid>
+                <br />
                 <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-                  Valider
+                  Modifier
                 </Button>
               </Box>
             </Box>

@@ -14,10 +14,39 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Badge } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link, useNavigate } from "react-router-dom";
+import Client from "../../@types/Client";
+import Ouvrier from "../../@types/Ouvrier";
+import Admin from "../../@types/Admin";
+import { getClient } from "../../actions/Client/action";
+import { getOuvrier } from "../../actions/Ouvrier/action";
+import { getAdmin } from "../../actions/Admin/action";
 
 function Navbar() {
+  const [client, setClient] = React.useState<Client | null>(null);
+  const [ouvrier, setOuvrier] = React.useState<Ouvrier | null>(null);
+  const [admin, setAdmin] = React.useState<Admin | null>(null);
+
+  const userId = localStorage.getItem("user_id");
+
+  React.useEffect(() => {
+    if (userId) {
+      getClient(userId, setClient);
+    }
+  }, [userId]);
+
+  React.useEffect(() => {
+    if (userId) {
+      getOuvrier(userId, setOuvrier);
+    }
+  }, [userId]);
+
+  React.useEffect(() => {
+    if (userId) {
+      getAdmin(userId, setAdmin);
+    }
+  }, [userId]);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -102,18 +131,34 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Liste des secteurs</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Contactez-nous</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Parametres-1</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">Parametres-2</Typography>
-              </MenuItem>
+              <Link to={"/list"} style={{ textDecoration: "none" }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    Liste des secteurs
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <Link to={"/contact"} style={{ textDecoration: "none" }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    Contactez-nous
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    Professionels
+                  </Typography>
+                </MenuItem>
+              </Link>
+              <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" style={{ color: "black" }}>
+                    Clients
+                  </Typography>
+                </MenuItem>
+              </Link>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -143,8 +188,8 @@ function Navbar() {
                   my: 2,
                   color: "white",
                   display: "block",
-                  fontSize: 13,
-                  paddingLeft: 10,
+                  fontSize: 12,
+                  paddingLeft: 8,
                 }}
               >
                 Liste des secteurs
@@ -156,8 +201,8 @@ function Navbar() {
                   my: 2,
                   color: "white",
                   display: "block",
-                  fontSize: 13,
-                  paddingLeft: 10,
+                  fontSize: 12,
+                  paddingLeft: 8,
                 }}
               >
                 Contactez-nous
@@ -169,11 +214,11 @@ function Navbar() {
                   my: 2,
                   color: "white",
                   display: "block",
-                  fontSize: 13,
-                  paddingLeft: 10,
+                  fontSize: 12,
+                  paddingLeft: 8,
                 }}
               >
-                Parametres-1
+                Professionels
               </Button>
             </Link>
             <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
@@ -182,11 +227,11 @@ function Navbar() {
                   my: 2,
                   color: "white",
                   display: "block",
-                  fontSize: 13,
-                  paddingLeft: 10,
+                  fontSize: 12,
+                  paddingLeft: 8,
                 }}
               >
-                Parametres-2
+                Clients
               </Button>
             </Link>
           </Box>
@@ -206,22 +251,14 @@ function Navbar() {
               </IconButton>
             </MenuItem>
           </Link>
-          <MenuItem>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-          </MenuItem>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/image/avatar/ryan.jpg" />
+                <Avatar
+                  alt="Remy Sharp"
+                  src={client?.coverPath || ouvrier?.coverPath}
+                />
               </IconButton>
             </Tooltip>
             <Menu

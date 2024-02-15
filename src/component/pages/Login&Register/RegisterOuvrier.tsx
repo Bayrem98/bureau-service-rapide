@@ -50,6 +50,27 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
   const [profession, setProfession] = useState<string>(fieldss[0].key);
+  const [coverPath, setCoverPath] = useState<any>();
+  const [num_cin, setNum_cin] = useState<number>();
+
+  const changeCoverHandler = (event: any) => {
+    const selectedCover = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", selectedCover);
+    fetch(`http://localhost:5000/upload/cover`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setCoverPath(`http://localhost:5000/upload/cover/${result.filename}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setCoverPath(undefined);
+      });
+  };
 
   const navigate = useNavigate();
 
@@ -61,6 +82,8 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
       num_tel,
       adresse,
       profession,
+      coverPath,
+      num_cin,
     };
     addOuvrier(newOuvrier, () => {
       navigate("/");
@@ -76,6 +99,8 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
     setNum_Tel("");
     setAdresse("");
     setProfession(fieldss[0].key);
+    setCoverPath("");
+    setNum_cin(0);
   };
 
   return (
@@ -84,7 +109,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
         <CssBaseline />
         <Box
           sx={{
-            mt: 20,
+            mt: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -171,6 +196,28 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
                     </MenuItem>
                   ))}
                 </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="num_cin"
+                  label="Numéro CIN"
+                  name="num_cin"
+                  value={num_cin}
+                  onChange={(e) => setNum_cin(parseInt(e.target.value))}
+                />
+              </Grid>
+              <Grid item xs={12}>
+              <InputLabel>Importer votre image</InputLabel>
+                <TextField
+                  required
+                  fullWidth
+                  id="coverPath"
+                  name="coverPath"
+                  type="file"
+                  onChange={changeCoverHandler}
+                />
               </Grid>
             </Grid>
             <Button

@@ -61,6 +61,13 @@ const ProfessionelProfil = () => {
                     >
                       {ouvrier.profession}
                     </Typography>
+                    <Typography
+                      level="body-sm"
+                      fontWeight="lg"
+                      textColor="text.tertiary"
+                    >
+                      {ouvrier.adresse}
+                    </Typography>
                     <Sheet
                       sx={{
                         bgcolor: "background.level1",
@@ -76,7 +83,7 @@ const ProfessionelProfil = () => {
                         <Typography level="body-xs" fontWeight="lg">
                           Projets
                         </Typography>
-                        <Typography fontWeight="lg">934</Typography>
+                        <Typography fontWeight="lg">324</Typography>
                       </div>
                       <div>
                         <Typography level="body-xs" fontWeight="lg">
@@ -98,7 +105,7 @@ const ProfessionelProfil = () => {
                         "& > button": { flex: 1 },
                       }}
                     >
-                      <Card variant="outlined" color="neutral">
+                      <Card variant="outlined" color="primary">
                         {ouvrier.num_tel}
                       </Card>
                       <a
@@ -108,10 +115,10 @@ const ProfessionelProfil = () => {
                       >
                         <Button
                           variant="solid"
-                          color="primary"
+                          color="success"
                           style={{ height: 60 }}
                         >
-                          Message
+                          Contacter
                         </Button>
                       </a>
                     </Box>
