@@ -23,6 +23,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import "react-international-phone/style.css";
 import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelProfil";
+import Cookies from "js-cookie";
 
 function App() {
   return (
@@ -56,11 +57,17 @@ function App() {
         <>
           <Navbar />
           <div>
+            {Cookies.get("access_token_admin") && (
+              <>
+                <Routes>
+                  <Route path="/ouvriertable" element={<OuvriersTable />} />
+                  <Route path="/clienttable" element={<ClientsTable />} />
+                  <Route path="/admintable" element={<AdminsTable />} />
+                </Routes>
+              </>
+            )}
             <Routes>
               <Route path="/home" element={<Home />} />
-              <Route path="/admintable" element={<AdminsTable />} />
-              <Route path="/clienttable" element={<ClientsTable />} />
-              <Route path="/ouvriertable" element={<OuvriersTable />} />
               <Route path="/profil" element={<Profile />} />
               <Route path="/demandeenattente" element={<DemandeEnAttente />} />
               <Route path="/demandecloturee" element={<DemandeCloturee />} />
@@ -68,9 +75,6 @@ function App() {
               <Route path="/list" element={<ListSecteurPage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
-              <Route path="/ouvriertable" element={<OuvriersTable />} />
-              <Route path="/clienttable" element={<ClientsTable />} />
-
               <Route
                 path="/professionel/:prof"
                 element={<ProfessionelProfil />}

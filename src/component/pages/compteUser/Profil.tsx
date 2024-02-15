@@ -27,33 +27,19 @@ import {
 import { Card } from "reactstrap";
 import Client from "../../../@types/Client";
 import Ouvrier from "../../../@types/Ouvrier";
-import Admin from "../../../@types/Admin";
 import { getClient } from "../../../actions/Client/action";
 import { getOuvrier } from "../../../actions/Ouvrier/action";
-import { getAdmin } from "../../../actions/Admin/action";
 
 const Profile = () => {
   const [client, setClient] = useState<Client | null>(null);
   const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
-  const [admin, setAdmin] = useState<Admin | null>(null);
 
   const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
     if (userId) {
       getClient(userId, setClient);
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    if (userId) {
       getOuvrier(userId, setOuvrier);
-    }
-  }, [userId]);
-
-  useEffect(() => {
-    if (userId) {
-      getAdmin(userId, setAdmin);
     }
   }, [userId]);
 
@@ -138,7 +124,9 @@ const Profile = () => {
             <IconButton style={{ marginLeft: 15, marginRight: 15 }}>
               <Avatar
                 alt="Remy Sharp"
-                src={client?.coverPath}
+                src={
+                  client ? client.coverPath : ouvrier ? ouvrier.coverPath : ""
+                }
                 style={{ width: 200, height: 200 }}
               />
             </IconButton>
@@ -156,29 +144,50 @@ const Profile = () => {
               <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
                 <HowToReg />
               </Avatar>
-              <Typography variant="h5">
-                Mon Compte
-              </Typography>
+              <Typography variant="h5">Mon Compte</Typography>
               <Box sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    Nom: {client?.nom}
-                  </Grid>
-                  <Grid item xs={12}>
-                    {" "}
-                    Prénom: {client?.prenom}
-                  </Grid>
-                  <Grid item xs={12}>
-                    {" "}
-                    Numéro de téléphone: {client?.num_tel}
-                  </Grid>
-                  <Grid item xs={12}>
-                    {" "}
-                    Numéro de CIN: {client?.num_cin}
-                  </Grid>
-                  <Grid item xs={12}>
-                    Adresse: {client?.adresse}
-                  </Grid>
+                  {client && (
+                    <>
+                      <Grid item xs={12}>
+                        Nom: {client.nom}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Prénom: {client.prenom}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Numéro de téléphone: {client.num_tel}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Numéro de CIN: {client.num_cin}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Adresse: {client.adresse}
+                      </Grid>
+                    </>
+                  )}
+                  {ouvrier && (
+                    <>
+                      <Grid item xs={12}>
+                        Nom: {ouvrier.nom}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Prénom: {ouvrier.prenom}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Numéro de téléphone: {ouvrier.num_tel}
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        Numéro de CIN: {ouvrier.num_cin}
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        Adresse: {ouvrier.adresse}
+                      </Grid>
+                      <Grid item xs={12}>
+                        Profession: {ouvrier.profession}
+                      </Grid>
+                    </>
+                  )}
                 </Grid>
                 <br />
                 <Button fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>

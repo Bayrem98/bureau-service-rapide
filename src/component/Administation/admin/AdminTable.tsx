@@ -23,7 +23,7 @@ const AdminsTable = (props: Props) => {
         style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
       >
         <div className="d-flex justify-content-between">
-          <h3>Tableau des Formateurs</h3>
+          <h3>Tableau des Admins</h3>
           <AdminAdd refresh={() => getAdmins(setAdmins)} />
         </div>
         <br />
@@ -31,7 +31,7 @@ const AdminsTable = (props: Props) => {
           <Table bordered responsive hover>
             <thead>
               <tr>
-                <th>Nom De Formateur</th>
+                <th>Numéro de tel</th>
                 <th style={{ textAlign: "center" }}>Action</th>
               </tr>
             </thead>
@@ -39,7 +39,7 @@ const AdminsTable = (props: Props) => {
               {admins.length ? (
                 admins.map((admin) => (
                   <tr key={admin._id}>
-                    <td>{admin.nom}</td>
+                    <td>{admin.num_tel}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
                         <AdminDelete

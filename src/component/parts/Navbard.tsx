@@ -21,6 +21,7 @@ import Admin from "../../@types/Admin";
 import { getClient } from "../../actions/Client/action";
 import { getOuvrier } from "../../actions/Ouvrier/action";
 import { getAdmin } from "../../actions/Admin/action";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const [client, setClient] = React.useState<Client | null>(null);
@@ -32,17 +33,7 @@ function Navbar() {
   React.useEffect(() => {
     if (userId) {
       getClient(userId, setClient);
-    }
-  }, [userId]);
-
-  React.useEffect(() => {
-    if (userId) {
       getOuvrier(userId, setOuvrier);
-    }
-  }, [userId]);
-
-  React.useEffect(() => {
-    if (userId) {
       getAdmin(userId, setAdmin);
     }
   }, [userId]);
@@ -74,6 +65,7 @@ function Navbar() {
   const Logout = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user_id");
+    Cookies.remove("access_token_admin");
     navigate("/");
     window.location.reload();
   };
@@ -138,6 +130,7 @@ function Navbar() {
                   </Typography>
                 </MenuItem>
               </Link>
+
               <Link to={"/contact"} style={{ textDecoration: "none" }}>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center" style={{ color: "black" }}>
@@ -145,20 +138,24 @@ function Navbar() {
                   </Typography>
                 </MenuItem>
               </Link>
-              <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" style={{ color: "black" }}>
-                    Professionels
-                  </Typography>
-                </MenuItem>
-              </Link>
-              <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" style={{ color: "black" }}>
-                    Clients
-                  </Typography>
-                </MenuItem>
-              </Link>
+              {admin && (
+                <>
+                  <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center" style={{ color: "black" }}>
+                        Professionels
+                      </Typography>
+                    </MenuItem>
+                  </Link>
+                  <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center" style={{ color: "black" }}>
+                        Clients
+                      </Typography>
+                    </MenuItem>
+                  </Link>
+                </>
+              )}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -195,6 +192,7 @@ function Navbar() {
                 Liste des secteurs
               </Button>
             </Link>
+
             <Link to={"/contact"} style={{ textDecoration: "none" }}>
               <Button
                 sx={{
@@ -208,32 +206,36 @@ function Navbar() {
                 Contactez-nous
               </Button>
             </Link>
-            <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  fontSize: 12,
-                  paddingLeft: 8,
-                }}
-              >
-                Professionels
-              </Button>
-            </Link>
-            <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  fontSize: 12,
-                  paddingLeft: 8,
-                }}
-              >
-                Clients
-              </Button>
-            </Link>
+            {admin && (
+              <>
+                <Link to={"/ouvriertable"} style={{ textDecoration: "none" }}>
+                  <Button
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      fontSize: 12,
+                      paddingLeft: 8,
+                    }}
+                  >
+                    Professionels
+                  </Button>
+                </Link>
+                <Link to={"/clienttable"} style={{ textDecoration: "none" }}>
+                  <Button
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      fontSize: 12,
+                      paddingLeft: 8,
+                    }}
+                  >
+                    Clients
+                  </Button>
+                </Link>
+              </>
+            )}
           </Box>
           <Link
             to={"/messagepage"}

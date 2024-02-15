@@ -5,6 +5,7 @@ import {
   Container,
   CssBaseline,
   Grid,
+  InputLabel,
   TextField,
   Typography,
 } from "@mui/material";
@@ -23,6 +24,27 @@ const RegisterClient = (props: ClientAddPropsType) => {
   const [password, setPassword] = useState<string>("");
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
+  const [coverPath, setCoverPath] = useState<any>();
+  const [num_cin, setNum_cin] = useState<number>();
+
+  const changeCoverHandler = (event: any) => {
+    const selectedCover = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", selectedCover);
+    fetch(`http://localhost:5000/upload/cover`, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
+        setCoverPath(`http://localhost:5000/upload/cover/${result.filename}`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        setCoverPath(undefined);
+      });
+  };
 
   const navigate = useNavigate();
 
@@ -33,6 +55,8 @@ const RegisterClient = (props: ClientAddPropsType) => {
       password,
       num_tel,
       adresse,
+      coverPath,
+      num_cin,
     };
     addClient(newClient, () => {
       navigate("/");
@@ -47,6 +71,8 @@ const RegisterClient = (props: ClientAddPropsType) => {
     setPassword("");
     setNum_Tel("");
     setAdresse("");
+    setCoverPath("");
+    setNum_cin(0);
   };
 
   return (
@@ -55,7 +81,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
         <CssBaseline />
         <Box
           sx={{
-            mt: 20,
+            mt: 2,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -122,6 +148,28 @@ const RegisterClient = (props: ClientAddPropsType) => {
                   name="adresse"
                   value={adresse}
                   onChange={(e) => setAdresse(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="num_cin"
+                  label="Numéro CIN"
+                  name="num_cin"
+                  value={num_cin}
+                  onChange={(e) => setNum_cin(parseInt(e.target.value))}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <InputLabel>Importer votre image</InputLabel>
+                <TextField
+                  required
+                  fullWidth
+                  id="coverPath"
+                  name="coverPath"
+                  type="file"
+                  onChange={changeCoverHandler}
                 />
               </Grid>
             </Grid>

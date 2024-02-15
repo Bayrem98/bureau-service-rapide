@@ -38,7 +38,7 @@ const AdminDelete = ({ admin, refresh }: AdminDeletePropsType) => {
         >
           Supprimer Admin
         </ModalHeader>
-        <ModalBody>Voulez-vous supprimer {admin.nom} ?</ModalBody>
+        <ModalBody>Voulez-vous supprimer {admin.num_tel} ?</ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={submit}>
             Valider

@@ -1,14 +1,15 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export function loginAdmin(
-  username: string,
+  num_tel: string,
   pass: string,
   callback: (data: any) => void,
   fallback: () => void
 ) {
   axios
     .post(`http://localhost:5000/auth/loginadmin`, {
-      username: username,
+      num_tel: num_tel,
       password: pass,
     })
     .then(({ data }) => {
@@ -61,7 +62,7 @@ export function loginO(
 }
 
 export function logoutAdmin() {
-  localStorage.removeItem("access_token");
+  Cookies.remove("access_token");
   window.location.reload();
 }
 

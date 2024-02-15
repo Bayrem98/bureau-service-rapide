@@ -12,37 +12,44 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form } from "reactstrap";
+import Cookies from "js-cookie";
+import { v4 as uuidv4 } from "uuid";
 
 const Login = () => {
   const [num_tel, setNum_tel] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isClient, setIsClient] = useState(true);
-  const [isOuvrier, setIsOuvrier] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const generateRandomTokenValue = () => {
+    const token = uuidv4();
+    return token;
+  };
 
   const toggleRole = () => {
     setIsClient((prevIsClient) => !prevIsClient);
-    setIsOuvrier(false);
+    setIsAdmin(false);
   };
 
-  const toggleOuvrier = () => {
-    setIsOuvrier((prevIsOuvrier) => !prevIsOuvrier);
+  const toggleAdmin = () => {
+    setIsAdmin((prevIsAdmin) => !prevIsAdmin);
     setIsClient(false);
   };
 
-  const handleLogin: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+  const handleLogin: React.MouseEventHandler<HTMLButtonElement> = (
+    event: any
+  ) => {
     event.preventDefault();
 
-    const authEndpoint = isClient
-      ? "login"
-      : isOuvrier
-      ? "logina"
-      : "loginadmin";
+    const authEndpoint = isClient ? "login" : isAdmin ? "loginadmin" : "logina";
 
     axios
       .post(`http://localhost:5000/auth/${authEndpoint}`, {
@@ -54,8 +61,13 @@ const Login = () => {
         localStorage.setItem("user_id", data.user._id);
         console.log(data);
 
-        if (isClient || isOuvrier) {
-          localStorage.getItem("access_token");
+        if (isAdmin) {
+          const token = generateRandomTokenValue();
+          Cookies.set(
+            "access_token_admin",
+            token,
+            { expires: 5 / 24 } // 1 heure (1/24 de la journée)
+          );
         }
         window.location.reload();
         navigateto();
@@ -90,10 +102,18 @@ const Login = () => {
             alignItems: "center",
           }}
         >
+          {errorMessage && (
+            <Alert severity="error" style={{ width: "100%" }}>
+              <AlertTitle>Error</AlertTitle>
+              {errorMessage}
+            </Alert>
+          )}
+          <br />
           <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
             <LockOutlined />
           </Avatar>
           <Typography variant="h5">Connecter Vous</Typography>
+
           <Form>
             <Box sx={{ mt: 1 }}>
               <FormControl fullWidth>
@@ -105,13 +125,13 @@ const Login = () => {
                   label="Tu es qui ?"
                   name="role"
                   autoFocus
-                  value={isClient ? "client" : isOuvrier ? "ouvrier" : "admin"}
+                  value={isClient ? "client" : isAdmin ? "admin" : "ouvrier"}
                   onChange={(e) => {
                     const selectedRole = e.target.value;
                     if (selectedRole === "client") {
                       toggleRole();
-                    } else if (selectedRole === "ouvrier") {
-                      toggleOuvrier();
+                    } else if (selectedRole === "admin") {
+                      toggleAdmin();
                     } else {
                       // Default to user role
                       toggleRole();

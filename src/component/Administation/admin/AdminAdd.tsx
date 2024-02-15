@@ -21,12 +21,12 @@ const AdminAdd = (props: AdminAddPropsType) => {
   const [isOpened, setIsOpened] = useState<boolean>(false);
 
   // form states
-  const [nom, setNom] = useState<string>("");
+  const [num_tel, setNum_tel] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordShown, setPasswordShown] = useState(false);
 
   const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNom(event.target.value);
+    setNum_tel(event.target.value);
   };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +35,7 @@ const AdminAdd = (props: AdminAddPropsType) => {
 
   const submit = () => {
     const newAdmin = {
-      nom,
+      num_tel,
       password,
     };
     addAdmin(newAdmin, () => {
@@ -46,7 +46,7 @@ const AdminAdd = (props: AdminAddPropsType) => {
   };
 
   const reset = () => {
-    setNom("");
+    setNum_tel("");
     setPassword("");
   };
 
@@ -86,11 +86,11 @@ const AdminAdd = (props: AdminAddPropsType) => {
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="username">Nom de Formateur</Label>
+              <Label for="num_tel">Numéro de tel</Label>
               <Input
-                value={nom}
-                id="nom"
-                name="nom"
+                value={num_tel}
+                id="num_tel"
+                name="num_tel"
                 type="text"
                 onChange={handleUsernameChange}
               />
