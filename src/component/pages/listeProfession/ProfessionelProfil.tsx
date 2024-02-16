@@ -36,7 +36,11 @@ const ProfessionelProfil = () => {
           <div className="d-flex justify-content-between">
             {Array.isArray(ouvriers) &&
               ouvriers.map((ouvrier) => (
-                <Card orientation="horizontal" style={{ marginRight: 20 }}>
+                <Card
+                  key={ouvrier._id}
+                  orientation="horizontal"
+                  style={{ marginRight: 20 }}
+                >
                   <AspectRatio
                     flex
                     ratio="1"
@@ -67,6 +71,13 @@ const ProfessionelProfil = () => {
                       textColor="text.tertiary"
                     >
                       {ouvrier.adresse}
+                    </Typography>
+                    <Typography
+                      level="body-sm"
+                      fontWeight="lg"
+                      textColor="text.tertiary"
+                    >
+                      {ouvrier.description}
                     </Typography>
                     <Sheet
                       sx={{

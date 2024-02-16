@@ -52,9 +52,10 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
   const [password, setPassword] = useState<string>(ouvrier.password);
   const [num_tel, setNum_Tel] = useState<string>(ouvrier.num_tel);
   const [adresse, setAdresse] = useState<string>(ouvrier.adresse);
-  const [profession, setProfession] = useState<string>(fieldss[0].key);
-  const [coverPath, setCoverPath] = useState<any>();
-  const [num_cin, setNum_cin] = useState<number>();
+  const [profession, setProfession] = useState<string>(ouvrier.profession);
+  const [coverPath, setCoverPath] = useState<any>(ouvrier.coverPath);
+  const [num_cin, setNum_cin] = useState<any>(ouvrier.num_cin);
+  const [description, setDescription] = useState<string>("");
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -96,6 +97,7 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
       profession,
       coverPath,
       num_cin,
+      description,
     };
     editOuvrier(newOuvrier, () => {
       refresh();
@@ -110,9 +112,10 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
     setPassword(ouvrier.password);
     setNum_Tel(ouvrier.num_tel);
     setAdresse(ouvrier.adresse);
-    setProfession(fieldss[0].key);
+    setProfession(ouvrier.profession);
     setCoverPath(ouvrier.coverPath);
-    setNum_cin(0);
+    setNum_cin(ouvrier.num_cin);
+    setDescription("");
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -244,6 +247,16 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
                 name="num_cin"
                 type="number"
                 onChange={(e) => setNum_cin(parseInt(e.target.value))}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="description">Description</Label>
+              <Input
+                value={description}
+                id="description"
+                name="description"
+                type="textarea"
+                onChange={(e) => setDescription(e.target.value)}
               />
             </FormGroup>
           </Form>

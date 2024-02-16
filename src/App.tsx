@@ -24,6 +24,7 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import "react-international-phone/style.css";
 import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelProfil";
 import Cookies from "js-cookie";
+import EspaceChat from "./component/pages/EspaceChat";
 
 function App() {
   return (
@@ -79,6 +80,7 @@ function App() {
                 path="/professionel/:prof"
                 element={<ProfessionelProfil />}
               />
+              <Route path="/espacechat" element={<EspaceChat />} />
             </Routes>
           </div>
           <Footer />

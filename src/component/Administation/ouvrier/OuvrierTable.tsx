@@ -49,6 +49,7 @@ const OuvriersTable = (props: Props) => {
               <th>Profession</th>
               <th>Photo</th>
               <th>Num-CIN</th>
+              <th>Description</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -74,6 +75,7 @@ const OuvriersTable = (props: Props) => {
                       />
                     </td>
                     <td>{ouvrier.num_cin}</td>
+                    <td>{ouvrier.description}</td>
                     <td style={{ textAlign: "center" }}>
                       <ButtonGroup>
                         <OuvrierEdit
