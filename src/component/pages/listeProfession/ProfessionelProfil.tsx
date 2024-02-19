@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/joy";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
 
@@ -120,7 +120,7 @@ const ProfessionelProfil = () => {
                         {ouvrier.num_tel}
                       </Card>
                       <a
-                        href={`https://wa.me/${ouvrier.num_tel}`}
+                        href={`https://wa.me/21652368419?text=je veux contacter ${ouvrier.nom} ${ouvrier.prenom} le ${ouvrier.profession}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -132,6 +132,9 @@ const ProfessionelProfil = () => {
                           Contacter
                         </Button>
                       </a>
+                      <Link to={`/demandeenattente/${ouvrier._id}`}>
+                        <Button>Valider la demande</Button>
+                      </Link>
                     </Box>
                   </CardContent>
                 </Card>

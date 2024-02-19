@@ -61,10 +61,15 @@ const Login = () => {
         localStorage.setItem("user_id", data.user._id);
         console.log(data);
 
-        if (isAdmin) {
+        if (isAdmin || isClient) {
           const token = generateRandomTokenValue();
+          const cookieName = isAdmin
+            ? "admin"
+            : isClient
+            ? "client"
+            : "ouvrier";
           Cookies.set(
-            "access_token_admin",
+            `access_token_${cookieName}`,
             token,
             { expires: 5 / 24 } // 1 heure (1/24 de la journée)
           );

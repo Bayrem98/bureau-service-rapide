@@ -58,22 +58,26 @@ function App() {
         <>
           <Navbar />
           <div>
-            {Cookies.get("access_token_admin") && (
+            {Cookies.get("access_token_admin" && "access_token_client") && (
               <>
                 <Routes>
                   <Route path="/ouvriertable" element={<OuvriersTable />} />
                   <Route path="/clienttable" element={<ClientsTable />} />
                   <Route path="/admintable" element={<AdminsTable />} />
+                  <Route path="/list" element={<ListSecteurPage />} />
                 </Routes>
               </>
             )}
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/profil" element={<Profile />} />
-              <Route path="/demandeenattente" element={<DemandeEnAttente />} />
+              <Route
+                path="/demandeenattente/:userId"
+                element={<DemandeEnAttente />}
+              />
               <Route path="/demandecloturee" element={<DemandeCloturee />} />
               <Route path="/mesreclamations" element={<MesReclamations />} />
-              <Route path="/list" element={<ListSecteurPage />} />
+
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
               <Route

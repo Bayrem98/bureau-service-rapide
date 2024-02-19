@@ -66,6 +66,8 @@ function Navbar() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user_id");
     Cookies.remove("access_token_admin");
+    Cookies.remove("access_token_client");
+    Cookies.remove("access_token_ouvrier");
     navigate("/");
     window.location.reload();
   };
@@ -123,13 +125,15 @@ function Navbar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <Link to={"/list"} style={{ textDecoration: "none" }}>
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" style={{ color: "black" }}>
-                    Liste des secteurs
-                  </Typography>
-                </MenuItem>
-              </Link>
+              {client && (
+                <Link to={"/list"} style={{ textDecoration: "none" }}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" style={{ color: "black" }}>
+                      Liste des secteurs
+                    </Typography>
+                  </MenuItem>
+                </Link>
+              )}
 
               <Link to={"/contact"} style={{ textDecoration: "none" }}>
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -179,19 +183,21 @@ function Navbar() {
             BSR
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to={"/list"} style={{ textDecoration: "none" }}>
-              <Button
-                sx={{
-                  my: 2,
-                  color: "white",
-                  display: "block",
-                  fontSize: 12,
-                  paddingLeft: 8,
-                }}
-              >
-                Liste des secteurs
-              </Button>
-            </Link>
+            {client && (
+              <Link to={"/list"} style={{ textDecoration: "none" }}>
+                <Button
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    fontSize: 12,
+                    paddingLeft: 8,
+                  }}
+                >
+                  Liste des secteurs
+                </Button>
+              </Link>
+            )}
 
             <Link to={"/contact"} style={{ textDecoration: "none" }}>
               <Button
@@ -237,7 +243,7 @@ function Navbar() {
               </>
             )}
           </Box>
-          <Link
+          {/*<Link
             to={"/messagepage"}
             style={{ textDecoration: "none", color: "white" }}
           >
@@ -252,7 +258,7 @@ function Navbar() {
                 </Badge>
               </IconButton>
             </MenuItem>
-          </Link>
+                  </Link> */}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

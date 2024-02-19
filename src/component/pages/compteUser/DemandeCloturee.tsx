@@ -11,14 +11,26 @@ import {
   VerifiedRounded,
   VerifiedUser,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
+import Ouvrier from "../../../@types/Ouvrier";
+import { getOuvrier } from "../../../actions/Ouvrier/action";
 
 const DemandeCloturee = () => {
+  let { userId } = useParams();
+  const [ouvrier, setOuvrier] = useState<Ouvrier>();
+
+  useEffect(() => {
+    if (userId) {
+      getOuvrier(userId, setOuvrier);
+    }
+  }, [userId]);
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -47,7 +59,7 @@ const DemandeCloturee = () => {
             </Link>
 
             <Link
-              to={"/demandeenattente"}
+              to={`/demandeenattente/${ouvrier?._id}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>

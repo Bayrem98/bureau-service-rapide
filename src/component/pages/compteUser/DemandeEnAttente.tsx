@@ -11,14 +11,27 @@ import {
   VerifiedRounded,
   VerifiedUser,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useEffect, useState } from "react";
+import Ouvrier from "../../../@types/Ouvrier";
+import { getOuvrier } from "../../../actions/Ouvrier/action";
+import { Button } from "@mui/material";
 
 const DemandeEnAttente = () => {
+  let { userId } = useParams();
+  const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
+
+  useEffect(() => {
+    if (userId) {
+      getOuvrier(userId, setOuvrier);
+    }
+  }, [userId]);
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -89,27 +102,27 @@ const DemandeEnAttente = () => {
             <CardMedia
               component="img"
               sx={{ width: 170 }}
-              image="/image/avatar/eva.jpg"
+              image={ouvrier?.coverPath}
               alt="."
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography component="div" variant="h5">
-                  Dévélopeuse
+                  {ouvrier?.profession}
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   color="text.secondary"
                   component="div"
                 >
-                  Khalifa Yossra
+                  {ouvrier?.nom} {ouvrier?.prenom}
                 </Typography>
                 <Typography
                   variant="subtitle2"
                   color="text.secondary"
                   component="div"
                 >
-                  Khzema, Sousse, Tunisie
+                  {ouvrier?.adresse}
                 </Typography>
                 <Typography
                   variant="subtitle2"
@@ -120,48 +133,16 @@ const DemandeEnAttente = () => {
                 </Typography>
               </CardContent>
               <Box
-                sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-              ></Box>
-            </Box>
-          </Card>
-          <br />
-          <Card sx={{ display: "flex", width: 750 }}>
-            <CardMedia
-              component="img"
-              sx={{ width: 170 }}
-              image="/image/avatar/ryan.jpg"
-              alt="."
-            />
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" variant="h5">
-                  Téchnicien Reseaux
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  Ncir Yasser
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  El jem, Sfax, Tunisie
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  08/02/2024
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-              ></Box>
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  pl: 30,
+                  pb: 1,
+                  pt: 2,
+                }}
+              >
+                <Button>Cloturée</Button>
+              </Box>
             </Box>
           </Card>
         </div>
