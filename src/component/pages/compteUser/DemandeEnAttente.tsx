@@ -24,13 +24,28 @@ import { Button } from "@mui/material";
 
 const DemandeEnAttente = () => {
   let { userId } = useParams();
-  const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
+  const [ouvrier, setOuvrier] = useState<Ouvrier>();
 
   useEffect(() => {
     if (userId) {
       getOuvrier(userId, setOuvrier);
     }
   }, [userId]);
+
+  const now = new Date();
+
+  const [date, setDate] = useState<string>(now.toLocaleDateString());
+
+  useEffect(() => {
+    const date = setInterval(
+      (): void => setDate(now.toLocaleDateString()),
+      1000
+    );
+    return () => {
+      clearInterval(date);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -59,7 +74,7 @@ const DemandeEnAttente = () => {
               </ListItemButton>
             </Link>
 
-            <Link to={"/demandeenattente"} style={{ textDecoration: "none" }}>
+            <Link to={"/demandeenattente/:userId"} style={{ textDecoration: "none" }}>
               <ListItemButton>
                 <ListItemIcon>
                   <PaddingRounded color="primary" />
@@ -68,7 +83,7 @@ const DemandeEnAttente = () => {
               </ListItemButton>
             </Link>
             <Link
-              to={"/demandecloturee"}
+              to={"/demandecloturee/:userId"}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>
@@ -97,55 +112,110 @@ const DemandeEnAttente = () => {
             </ListItemButton>
           </List>
         </div>
-        <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
-          <Card sx={{ display: "flex", width: 750 }}>
-            <CardMedia
-              component="img"
-              sx={{ width: 170 }}
-              image={ouvrier?.coverPath}
-              alt="."
-            />
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" variant="h5">
-                  {ouvrier?.profession}
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
+        {ouvrier ? (
+          <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
+            <Card sx={{ display: "flex", width: 750 }}>
+              <CardMedia
+                component="img"
+                sx={{ width: 170 }}
+                image={ouvrier?.coverPath}
+                alt="."
+              />
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <CardContent sx={{ flex: "1 0 auto" }}>
+                  <Typography component="div" variant="h5">
+                    {ouvrier?.profession}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    {ouvrier?.nom} {ouvrier?.prenom}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    {ouvrier?.adresse}
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    <span style={{ fontWeight: "bold" }}>
+                      {" "}
+                      Date de Demande: {date}
+                    </span>
+                  </Typography>
+                </CardContent>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    pl: 30,
+                    pb: 1,
+                    pt: 2,
+                  }}
                 >
-                  {ouvrier?.nom} {ouvrier?.prenom}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  {ouvrier?.adresse}
-                </Typography>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  10/02/2024
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  pl: 30,
-                  pb: 1,
-                  pt: 2,
-                }}
-              >
-                <Button>Cloturée</Button>
+                  <Link to={`/demandecloturee/${ouvrier?._id}`}>
+                    <Button>Cloturée</Button>
+                  </Link>
+                </Box>
               </Box>
-            </Box>
-          </Card>
-        </div>
+            </Card>
+          </div>
+        ) : (
+          <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
+            <Card sx={{ display: "flex", width: 750 }}>
+              <CardMedia component="img" sx={{ width: 170 }} image="" alt="." />
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <CardContent sx={{ flex: "1 0 auto" }}>
+                  <Typography component="div" variant="h5">
+                    Profession
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Nom et Prénom
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    Adresse
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    component="div"
+                  >
+                    <span style={{ fontWeight: "bold" }}>
+                      {" "}
+                      Date de Demande: JJ/MM/AA
+                    </span>
+                  </Typography>
+                </CardContent>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    pl: 30,
+                    pb: 1,
+                    pt: 2,
+                  }}
+                >
+                  <Button>Cloturée</Button>
+                </Box>
+              </Box>
+            </Card>
+          </div>
+        )}
       </div>
     </>
   );

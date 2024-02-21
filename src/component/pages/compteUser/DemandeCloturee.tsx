@@ -20,14 +20,19 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvrier } from "../../../actions/Ouvrier/action";
+import Client from "../../../@types/Client";
+import { getClient } from "../../../actions/Client/action";
 
 const DemandeCloturee = () => {
-  let { userId } = useParams();
-  const [ouvrier, setOuvrier] = useState<Ouvrier>();
+  const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
+  const [client, setClient] = useState<Client | null>(null);
+
+  const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
     if (userId) {
       getOuvrier(userId, setOuvrier);
+      getClient(userId, setClient);
     }
   }, [userId]);
 
@@ -57,19 +62,25 @@ const DemandeCloturee = () => {
                 <ListItemText primary="Profil" />
               </ListItemButton>
             </Link>
-
+            {client && (
+              <>
+                <Link
+                  to={`/demandeenattente/${ouvrier?._id}`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PaddingRounded color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Demande en attente" />
+                  </ListItemButton>
+                </Link>
+              </>
+            )}
             <Link
-              to={`/demandeenattente/${ouvrier?._id}`}
-              style={{ textDecoration: "none", color: "black" }}
+              to={"/demandecloturee/:userId"}
+              style={{ textDecoration: "none" }}
             >
-              <ListItemButton>
-                <ListItemIcon>
-                  <PaddingRounded color="primary" />
-                </ListItemIcon>
-                <ListItemText primary="Demande en attente" />
-              </ListItemButton>
-            </Link>
-            <Link to={"/demandecloturee"} style={{ textDecoration: "none" }}>
               <ListItemButton>
                 <ListItemIcon>
                   <VerifiedRounded color="primary" />
@@ -77,23 +88,27 @@ const DemandeCloturee = () => {
                 <ListItemText primary="Demande cloturée" />
               </ListItemButton>
             </Link>
-            <Link
-              to={"/mesreclamations"}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <NoteAltRounded color="primary" />
-                </ListItemIcon>
-                <ListItemText primary="Mes reclamations" />
-              </ListItemButton>
-            </Link>
-            <ListItemButton>
-              <ListItemIcon>
-                <NotesRounded color="primary" />
-              </ListItemIcon>
-              <ListItemText primary="Mes avis" />
-            </ListItemButton>
+            {client && (
+              <>
+                <Link
+                  to={"/mesreclamations"}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <NoteAltRounded color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Mes reclamations" />
+                  </ListItemButton>
+                </Link>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <NotesRounded color="primary" />
+                  </ListItemIcon>
+                  <ListItemText primary="Mes avis" />
+                </ListItemButton>
+              </>
+            )}
           </List>
         </div>
         <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
@@ -101,34 +116,34 @@ const DemandeCloturee = () => {
             <CardMedia
               component="img"
               sx={{ width: 170 }}
-              image="/image/avatar/julie.jpg"
+              image={ouvrier?.coverPath}
               alt="."
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography component="div" variant="h5">
-                  Coiffeuse-Esthetique
+                  {ouvrier?.profession}
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   color="text.secondary"
                   component="div"
                 >
-                  Ayech Meriem
+                  {ouvrier?.nom} {ouvrier?.prenom}
                 </Typography>
                 <Typography
                   variant="subtitle2"
                   color="text.secondary"
                   component="div"
                 >
-                  Centre Ville, Sousse, Tunisie
+                  {ouvrier?.adresse}
                 </Typography>
                 <Typography
                   variant="subtitle2"
                   color="text.secondary"
                   component="div"
                 >
-                  01/02/2024
+                  <span style={{ fontWeight: "bold" }}> Demande Cloturée</span>
                 </Typography>
               </CardContent>
               <Box

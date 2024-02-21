@@ -46,7 +46,7 @@ const MesReclamations = () => {
             </Link>
 
             <Link
-              to={"/demandeenattente"}
+              to={`/demandeenattente/:userId`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>
@@ -57,7 +57,7 @@ const MesReclamations = () => {
               </ListItemButton>
             </Link>
             <Link
-              to={"/demandecloturee"}
+              to={"/demandecloturee/:userId"}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>

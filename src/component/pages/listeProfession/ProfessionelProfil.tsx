@@ -15,10 +15,15 @@ import { getOuvriers } from "../../../actions/Ouvrier/action";
 const ProfessionelProfil = () => {
   let { prof } = useParams();
   const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
+  const [boutonValider, setBoutonValider] = useState(false);
 
   useEffect(() => {
     getOuvriers({ profession: prof }, setOuvriers);
   }, [prof]);
+
+  const handleClick = () => {
+    setBoutonValider(true);
+  };
 
   return (
     <>
@@ -119,22 +124,31 @@ const ProfessionelProfil = () => {
                       <Card variant="outlined" color="primary">
                         {ouvrier.num_tel}
                       </Card>
-                      <a
-                        href={`https://wa.me/21652368419?text=je veux contacter ${ouvrier.nom} ${ouvrier.prenom} le ${ouvrier.profession}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button
-                          variant="solid"
-                          color="success"
-                          style={{ height: 60 }}
+                      {boutonValider ? (
+                        <Link to={`/demandeenattente/${ouvrier._id}`}>
+                          <Button
+                            color="success"
+                            style={{ height: 60 }}
+                            onClick={handleClick}
+                          >
+                            Valider la demande
+                          </Button>
+                        </Link>
+                      ) : (
+                        <a
+                          href={`https://wa.me/21652368419?text=je veux contacter ${ouvrier.nom} ${ouvrier.prenom} le ${ouvrier.profession}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          Contacter
-                        </Button>
-                      </a>
-                      <Link to={`/demandeenattente/${ouvrier._id}`}>
-                        <Button>Valider la demande</Button>
-                      </Link>
+                          <Button
+                            variant="solid"
+                            style={{ height: 60 }}
+                            onClick={handleClick}
+                          >
+                            Contacter
+                          </Button>
+                        </a>
+                      )}
                     </Box>
                   </CardContent>
                 </Card>

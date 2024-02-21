@@ -65,6 +65,18 @@ function App() {
                   <Route path="/clienttable" element={<ClientsTable />} />
                   <Route path="/admintable" element={<AdminsTable />} />
                   <Route path="/list" element={<ListSecteurPage />} />
+                  <Route
+                    path="/professionel/:prof"
+                    element={<ProfessionelProfil />}
+                  />
+                  <Route
+                    path="/demandeenattente/:userId"
+                    element={<DemandeEnAttente />}
+                  />
+                  <Route
+                    path="/mesreclamations"
+                    element={<MesReclamations />}
+                  />
                 </Routes>
               </>
             )}
@@ -72,18 +84,11 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/profil" element={<Profile />} />
               <Route
-                path="/demandeenattente/:userId"
-                element={<DemandeEnAttente />}
+                path="/demandecloturee/:userId"
+                element={<DemandeCloturee />}
               />
-              <Route path="/demandecloturee" element={<DemandeCloturee />} />
-              <Route path="/mesreclamations" element={<MesReclamations />} />
-
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
-              <Route
-                path="/professionel/:prof"
-                element={<ProfessionelProfil />}
-              />
               <Route path="/espacechat" element={<EspaceChat />} />
             </Routes>
           </div>

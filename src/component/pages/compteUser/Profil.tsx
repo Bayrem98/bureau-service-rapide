@@ -146,19 +146,23 @@ const Profile = () => {
                 <ListItemText primary="Profil" />
               </ListItemButton>
             </Link>
+            {client && (
+              <>
+                <Link
+                  to={`/demandeenattente/:userId`}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <PaddingRounded color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Demande en attente" />
+                  </ListItemButton>
+                </Link>
+              </>
+            )}
             <Link
-              to={`/demandeenattente/${ouvrier?._id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <PaddingRounded color="primary" />
-                </ListItemIcon>
-                <ListItemText primary="Demande en attente" />
-              </ListItemButton>
-            </Link>
-            <Link
-              to={"/demandecloturee"}
+              to={"/demandecloturee/:userId"}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>
@@ -168,23 +172,27 @@ const Profile = () => {
                 <ListItemText primary="Demande cloturée" />
               </ListItemButton>
             </Link>
-            <Link
-              to={"/mesreclamations"}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <NoteAltRounded color="primary" />
-                </ListItemIcon>
-                <ListItemText primary="Mes reclamations" />
-              </ListItemButton>
-            </Link>
-            <ListItemButton>
-              <ListItemIcon>
-                <NotesRounded color="primary" />
-              </ListItemIcon>
-              <ListItemText primary="Mes avis" />
-            </ListItemButton>
+            {client && (
+              <>
+                <Link
+                  to={"/mesreclamations"}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <NoteAltRounded color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Mes reclamations" />
+                  </ListItemButton>
+                </Link>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <NotesRounded color="primary" />
+                  </ListItemIcon>
+                  <ListItemText primary="Mes avis" />
+                </ListItemButton>
+              </>
+            )}
           </List>
         </div>
 
