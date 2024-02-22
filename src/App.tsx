@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import AdminsTable from "./component/Administation/admin/AdminTable";
 import Login from "./component/pages/Login&Register/Login";
 import ClientsTable from "./component/Administation/client/ClientTable";
@@ -26,8 +26,14 @@ import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelPr
 import Cookies from "js-cookie";
 import EspaceChat from "./component/pages/EspaceChat";
 import ContactsTable from "./component/Administation/contactUsers/ContactTable";
+import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
 
 function App() {
+  const [isCardOpen, setIsCardOpen] = useState(false);
+
+  const handleClick = () => {
+    setIsCardOpen(!isCardOpen);
+  };
   return (
     <>
       <Routes>
@@ -102,20 +108,97 @@ function App() {
             </Routes>
           </div>
           <Footer />
-          <div className="whatsapp-bubble">
-            <a
-              href="https://web.whatsapp.com/send?phone=+21652368419"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon
-                icon={faWhatsapp}
-                beat
-                size="xl"
-                style={{ color: "white" }}
-              />
-            </a>
+          <div className="whatsapp-bubble" onClick={handleClick}>
+            <FontAwesomeIcon
+              icon={faWhatsapp}
+              beat
+              size="xl"
+              style={{ color: "white" }}
+            />
           </div>
+          {isCardOpen && (
+            <Card
+              style={{
+                width: 350,
+                position: "absolute",
+                bottom: 90,
+                right: 10,
+              }}
+            >
+              <CardHeader style={{ backgroundColor: "#25d366", height: 120 }}>
+                <span
+                  style={{
+                    color: "white",
+                    fontSize: 20,
+                    position: "absolute",
+                    right: 10,
+                    top: 1,
+                    cursor: "pointer",
+                  }}
+                  onClick={handleClick}
+                >
+                  X
+                </span>
+                <span
+                  style={{
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  Bonjour !
+                </span>
+                <br />
+                <br />
+                <span
+                  style={{
+                    fontSize: 17,
+                    textAlign: "justify",
+                    color: "white",
+                  }}
+                >
+                  Cliquez sur le contact ci-dessous pour discuter sur
+                  WhatsApp...
+                </span>
+              </CardHeader>
+              <CardBody>
+                <a
+                  data-action="open"
+                  data-phone="52368419"
+                  data-message
+                  href="https://web.whatsapp.com/send?phone=+21652368419&text="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    fontSize: 17,
+                    fontWeight: "bold",
+                  }}
+                >
+                  <img
+                    src="/image/logo/logo 2.png"
+                    alt="."
+                    width={80}
+                    height={60}
+                    style={{ borderRadius: 10, marginRight: 10 }}
+                  />
+                  L'équipe Service Rapide
+                </a>
+              </CardBody>
+              <Link to={"/contact"} style={{ textDecoration: "none" }}>
+                <CardFooter style={{ height: 40 }}>
+                  <p
+                    style={{
+                      fontSize: 15,
+                      color: "black",
+                    }}
+                  >
+                    Nous contacter par e-mail...
+                  </p>
+                </CardFooter>
+              </Link>
+            </Card>
+          )}
         </>
       )}
     </>
