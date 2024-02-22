@@ -11,11 +11,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
+import { Rating } from "react-simple-star-rating";
 
 const ProfessionelProfil = () => {
   let { prof } = useParams();
   const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
   const [boutonValider, setBoutonValider] = useState(false);
+  const [ratingValue, setRatingValue] = useState(0);
 
   useEffect(() => {
     getOuvriers({ profession: prof }, setOuvriers);
@@ -23,6 +25,10 @@ const ProfessionelProfil = () => {
 
   const handleClick = () => {
     setBoutonValider(true);
+  };
+
+  const handleRating = (rate: number) => {
+    setRatingValue(rate);
   };
 
   return (
@@ -111,7 +117,7 @@ const ProfessionelProfil = () => {
                         <Typography level="body-xs" fontWeight="lg">
                           Avis
                         </Typography>
-                        <Typography fontWeight="lg">10</Typography>
+                        <Rating size={30} />
                       </div>
                     </Sheet>
                     <Box
