@@ -25,6 +25,7 @@ import "react-international-phone/style.css";
 import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelProfil";
 import Cookies from "js-cookie";
 import EspaceChat from "./component/pages/EspaceChat";
+import ContactsTable from "./component/Administation/contactUsers/ContactTable";
 
 function App() {
   return (
@@ -58,12 +59,20 @@ function App() {
         <>
           <Navbar />
           <div>
-            {Cookies.get("access_token_admin" && "access_token_client") && (
+            {Cookies.get("access_token_admin") && (
               <>
                 <Routes>
                   <Route path="/ouvriertable" element={<OuvriersTable />} />
                   <Route path="/clienttable" element={<ClientsTable />} />
                   <Route path="/admintable" element={<AdminsTable />} />
+                  <Route path="/contactable" element={<ContactsTable />} />
+                </Routes>
+              </>
+            )}
+
+            {Cookies.get("access_token_admin" && "access_token_client") && (
+              <>
+                <Routes>
                   <Route path="/list" element={<ListSecteurPage />} />
                   <Route
                     path="/professionel/:prof"

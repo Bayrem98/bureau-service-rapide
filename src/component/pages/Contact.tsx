@@ -1,4 +1,11 @@
-import { ContactMail } from "@mui/icons-material";
+import {
+  ContactMail,
+  FacebookRounded,
+  Instagram,
+  LocationOnRounded,
+  MailRounded,
+  PhoneEnabledRounded,
+} from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -7,142 +14,158 @@ import {
   CssBaseline,
   TextField,
 } from "@mui/material";
-import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
-import { styled } from "@mui/system";
+import { useState } from "react";
+import { addContact } from "../../actions/Contact/action";
+import { FormGroup, Input } from "reactstrap";
 
 const Contact = () => {
-  const blue = {
-    100: "#DAECFF",
-    200: "#b6daff",
-    400: "#3399FF",
-    500: "#007FFF",
-    600: "#0072E5",
-    900: "#003A75",
+  const [nom, setNom] = useState<string>("");
+  const [prenom, setPrenom] = useState<string>("");
+  const [num_tel, setNum_tel] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  const submit = () => {
+    const newContact = {
+      nom,
+      prenom,
+      num_tel,
+      email,
+      message,
+    };
+    addContact(newContact, () => {
+      window.location.reload();
+      reset();
+    });
+  };
+  const reset = () => {
+    setNom("");
+    setPrenom("");
+    setNum_tel("");
+    setEmail("");
+    setMessage("");
   };
 
-  const grey = {
-    50: "#F3F6F9",
-    100: "#E5EAF2",
-    200: "#DAE2ED",
-    300: "#C7D0DD",
-    400: "#B0B8C4",
-    500: "#9DA8B7",
-    600: "#6B7A90",
-    700: "#434D5B",
-    800: "#303740",
-    900: "#1C2025",
-  };
-
-  const Textarea = styled(BaseTextareaAutosize)(
-    ({ theme }) => `
-        box-sizing: border-box;
-        width: 395px;
-        font-family: 'IBM Plex Sans', sans-serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1;
-        padding: 8px 12px;
-        border-radius: 8px;
-        color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-        background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-        border: 1px solid ${
-          theme.palette.mode === "dark" ? grey[700] : grey[200]
-        };
-        box-shadow: 0px 2px 2px ${
-          theme.palette.mode === "dark" ? grey[900] : grey[50]
-        };
-    
-        &:hover {
-          border-color: ${blue[400]};
-        }
-    
-        &:focus {
-          border-color: ${blue[400]};
-          box-shadow: 0 0 0 3px ${
-            theme.palette.mode === "dark" ? blue[600] : blue[200]
-          };
-        }
-    
-        // firefox
-        &:focus-visible {
-          outline: 0;
-        }
-      `
-  );
   return (
     <>
       <div style={{ marginTop: 10, marginLeft: 30, marginRight: 30 }}>
-        <Container maxWidth="xs">
-          <CssBaseline />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <Avatar
-              sx={{ m: 0, bgcolor: "primary.light", width: 60, height: 60 }}
-            >
-              <ContactMail />
-            </Avatar>
+        <div className="d-flex justify-content-between">
+          <div style={{ marginTop: 50 }}>
+            <h4>Nos Coordonnées</h4>
+            <p style={{ fontSize: 16, width: 600 }}>
+              Notre équipe de professionnels se tient a votre disposition pour
+              toute demande d'information pour notre application.
+            </p>
+            <br />
+            <p>
+              <LocationOnRounded color="primary" />
+              Rue de Haffouz, Sousse, Tunisie
+            </p>
+            <p>
+              <PhoneEnabledRounded color="primary" />
+              +216 52 368 419
+            </p>
+            <p>
+              <PhoneEnabledRounded color="primary" />
+              +216 92 209 214
+            </p>
+            <p>
+              <MailRounded color="primary" />
+              bureau_des_services_rapide@gmail.com
+            </p>
+            <p>
+              <FacebookRounded color="primary" />
+              Bureau-S-R
+            </p>
+            <p>
+              <Instagram color="primary" />
+              Bureau-S-R
+            </p>
+          </div>
+          <div>
+            {" "}
+            <Container maxWidth="xs">
+              <CssBaseline />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Avatar
+                  sx={{ m: 0, bgcolor: "primary.light", width: 60, height: 60 }}
+                >
+                  <ContactMail />
+                </Avatar>
 
-            <Box sx={{ mt: 0 }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="nom"
-                label="Nom"
-                name="nom"
-                autoFocus
-                value=""
-                onChange={(e) => {}}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="prenom"
-                label="Prénom"
-                name="prenom"
-                value=""
-                onChange={(e) => {}}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="num_tel"
-                name="num_tel"
-                label="Numéro de téléphone"
-                type="email"
-                value=""
-                onChange={(e) => {}}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                name="email"
-                label="Email"
-                type="email"
-                value=""
-                onChange={(e) => {}}
-              />
-              <Textarea
-                aria-label="minimum height"
-                minRows={3}
-                placeholder="Message ou Commentaire..."
-              />
-
-              <Button fullWidth variant="contained" sx={{ mt: 2, mb: 2 }}>
-                Valider
-              </Button>
-            </Box>
-          </Box>
-        </Container>
+                <Box sx={{ mt: 0 }}>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="nom"
+                    label="Nom"
+                    name="nom"
+                    autoFocus
+                    value={nom}
+                    onChange={(e) => setNom(e.target.value)}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="prenom"
+                    label="Prénom"
+                    name="prenom"
+                    value={prenom}
+                    onChange={(e) => setPrenom(e.target.value)}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="num_tel"
+                    name="num_tel"
+                    label="Numéro de téléphone"
+                    type="email"
+                    value={num_tel}
+                    onChange={(e) => setNum_tel(e.target.value)}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    name="email"
+                    label="Email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <FormGroup>
+                    <Input
+                      value={message}
+                      id="message"
+                      name="message"
+                      type="textarea"
+                      placeholder="Message ou commentaire..."
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </FormGroup>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 0, mb: 2 }}
+                    onClick={submit}
+                  >
+                    Valider
+                  </Button>
+                </Box>
+              </Box>
+            </Container>
+          </div>
+        </div>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d324.10394234298707!2d10.629031131681858!3d35.83467732550011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d35.8348425!2d10.6291741!4m3!3m2!1d35.8348425!2d10.6291741!5e0!3m2!1sfr!2stn!4v1706806939400!5m2!1sfr!2stn"
           style={{ border: 0, width: "100%", height: 215, marginBottom: 14 }}

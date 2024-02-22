@@ -37,7 +37,7 @@ const ContactDelete = ({ contact, refresh }: ContactDeletePropsType) => {
           Supprimer Contact
         </ModalHeader>
         <ModalBody>
-          Voulez-vous supprimer {contact.nom},{contact.prenom} ?
+          Voulez-vous supprimer message de "{contact.nom} {contact.prenom}" ?
         </ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={submit}>

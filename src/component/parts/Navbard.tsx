@@ -158,6 +158,13 @@ function Navbar() {
                       </Typography>
                     </MenuItem>
                   </Link>
+                  <Link to={"/contactable"} style={{ textDecoration: "none" }}>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center" style={{ color: "black" }}>
+                        Message/Commentaire
+                      </Typography>
+                    </MenuItem>
+                  </Link>
                 </>
               )}
             </Menu>
@@ -238,6 +245,19 @@ function Navbar() {
                     }}
                   >
                     Clients
+                  </Button>
+                </Link>
+                <Link to={"/contactable"} style={{ textDecoration: "none" }}>
+                  <Button
+                    sx={{
+                      my: 2,
+                      color: "white",
+                      display: "block",
+                      fontSize: 12,
+                      paddingLeft: 8,
+                    }}
+                  >
+                    Message/Commentaire
                   </Button>
                 </Link>
               </>
