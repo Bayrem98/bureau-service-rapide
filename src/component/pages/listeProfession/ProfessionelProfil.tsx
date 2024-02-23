@@ -23,8 +23,9 @@ const ProfessionelProfil = () => {
     getOuvriers({ profession: prof }, setOuvriers);
   }, [prof]);
 
-  const handleClick = () => {
+  const handleClick = (userId: any) => {
     setBoutonValider(true);
+    localStorage.setItem("selectedOuvrier", userId);
   };
 
   const handleRating = (rate: number) => {
@@ -135,7 +136,7 @@ const ProfessionelProfil = () => {
                           <Button
                             color="success"
                             style={{ height: 60 }}
-                            onClick={handleClick}
+                            onClick={() => handleClick(ouvrier._id)}
                           >
                             Valider la demande
                           </Button>

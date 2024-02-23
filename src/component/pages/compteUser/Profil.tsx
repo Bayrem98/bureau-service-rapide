@@ -47,7 +47,7 @@ const Profile = () => {
   const [client, setClient] = useState<Client | null>(null);
   const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
 
-  const [nom, setNom] = useState<string>((client?.nom || ouvrier?.nom) ?? "");
+  const [nom, setNom] = useState<string>(client?.nom ?? "");
   const [prenom, setPrenom] = useState<string>(client?.prenom ?? "");
   const [password, setPassword] = useState<string>(client?.password ?? "");
   const [num_tel, setNum_Tel] = useState<string>(client?.num_tel ?? "");
@@ -159,21 +159,18 @@ const Profile = () => {
                     <ListItemText primary="Demande en attente" />
                   </ListItemButton>
                 </Link>
-              </>
-            )}
-            <Link
-              to={"/demandecloturee/:userId"}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  <VerifiedRounded color="primary" />
-                </ListItemIcon>
-                <ListItemText primary="Demande cloturée" />
-              </ListItemButton>
-            </Link>
-            {client && (
-              <>
+
+                <Link
+                  to={"/demandecloturee/:userId"}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <VerifiedRounded color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Demande cloturée" />
+                  </ListItemButton>
+                </Link>
                 <Link
                   to={"/mesreclamations"}
                   style={{ textDecoration: "none", color: "black" }}
@@ -383,16 +380,7 @@ const Profile = () => {
                         </span>{" "}
                         {ouvrier.profession}
                       </Grid>
-                      <br />
-                      <br />
-                      <br />
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => setIsOpened(true)}
-                      >
-                        Modifier
-                      </Button>
+                     
                     </>
                   )}
                 </Grid>

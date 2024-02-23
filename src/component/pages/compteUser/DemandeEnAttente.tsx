@@ -23,14 +23,20 @@ import { getOuvrier } from "../../../actions/Ouvrier/action";
 import { Button } from "@mui/material";
 
 const DemandeEnAttente = () => {
-  let { userId } = useParams();
-  const [ouvrier, setOuvrier] = useState<Ouvrier>();
+  const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
 
   useEffect(() => {
-    if (userId) {
-      getOuvrier(userId, setOuvrier);
+    const storedOuvrierId = localStorage.getItem("selectedOuvrier");
+    if (storedOuvrierId) {
+      getOuvrier(storedOuvrierId, setOuvrier);
     }
-  }, [userId]);
+  }, []);
+
+  const handleClickRemove = () => {
+    localStorage.removeItem("selectedOuvrier");
+    setOuvrier(null);
+    window.location.replace(`/demandecloturee/${ouvrier?._id}`);
+  };
 
   const now = new Date();
 
@@ -44,7 +50,7 @@ const DemandeEnAttente = () => {
     return () => {
       clearInterval(date);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -74,7 +80,10 @@ const DemandeEnAttente = () => {
               </ListItemButton>
             </Link>
 
-            <Link to={"/demandeenattente/:userId"} style={{ textDecoration: "none" }}>
+            <Link
+              to={`/demandeenattente/${ouvrier?._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <ListItemButton>
                 <ListItemIcon>
                   <PaddingRounded color="primary" />
@@ -83,7 +92,7 @@ const DemandeEnAttente = () => {
               </ListItemButton>
             </Link>
             <Link
-              to={"/demandecloturee/:userId"}
+              to={`/demandecloturee/${ouvrier?._id}`}
               style={{ textDecoration: "none", color: "black" }}
             >
               <ListItemButton>
@@ -114,31 +123,31 @@ const DemandeEnAttente = () => {
         </div>
         {ouvrier ? (
           <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
-            <Card sx={{ display: "flex", width: 750 }}>
+            <Card sx={{ display: "flex", width: 750 }} key={ouvrier._id}>
               <CardMedia
                 component="img"
                 sx={{ width: 170 }}
-                image={ouvrier?.coverPath}
+                image={ouvrier.coverPath}
                 alt="."
               />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
                   <Typography component="div" variant="h5">
-                    {ouvrier?.profession}
+                    {ouvrier.profession}
                   </Typography>
                   <Typography
                     variant="subtitle1"
                     color="text.secondary"
                     component="div"
                   >
-                    {ouvrier?.nom} {ouvrier?.prenom}
+                    {ouvrier.nom} {ouvrier.prenom}
                   </Typography>
                   <Typography
                     variant="subtitle2"
                     color="text.secondary"
                     component="div"
                   >
-                    {ouvrier?.adresse}
+                    {ouvrier.adresse}
                   </Typography>
                   <Typography
                     variant="subtitle2"
@@ -160,9 +169,9 @@ const DemandeEnAttente = () => {
                     pt: 2,
                   }}
                 >
-                  <Link to={`/demandecloturee/${ouvrier?._id}`}>
-                    <Button>Cloturée</Button>
-                  </Link>
+                  <Button variant="outlined" onClick={handleClickRemove}>
+                    Cloturée
+                  </Button>
                 </Box>
               </Box>
             </Card>
@@ -181,7 +190,7 @@ const DemandeEnAttente = () => {
                     color="text.secondary"
                     component="div"
                   >
-                    Nom et Prénom
+                    Nom Prénom
                   </Typography>
                   <Typography
                     variant="subtitle2"
@@ -209,9 +218,7 @@ const DemandeEnAttente = () => {
                     pb: 1,
                     pt: 2,
                   }}
-                >
-                  <Button>Cloturée</Button>
-                </Box>
+                ></Box>
               </Box>
             </Card>
           </div>

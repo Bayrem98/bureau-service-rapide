@@ -72,6 +72,7 @@ function App() {
                   <Route path="/clienttable" element={<ClientsTable />} />
                   <Route path="/admintable" element={<AdminsTable />} />
                   <Route path="/contactable" element={<ContactsTable />} />
+                  <Route path="/list" element={<ListSecteurPage />} />
                 </Routes>
               </>
             )}
@@ -89,6 +90,10 @@ function App() {
                     element={<DemandeEnAttente />}
                   />
                   <Route
+                    path="/demandecloturee/:userId"
+                    element={<DemandeCloturee />}
+                  />
+                  <Route
                     path="/mesreclamations"
                     element={<MesReclamations />}
                   />
@@ -98,10 +103,6 @@ function App() {
             <Routes>
               <Route path="/home" element={<Home />} />
               <Route path="/profil" element={<Profile />} />
-              <Route
-                path="/demandecloturee/:userId"
-                element={<DemandeCloturee />}
-              />
               <Route path="/contact" element={<Contact />} />
               <Route path="/messagepage" element={<MessagePage />} />
               <Route path="/espacechat" element={<EspaceChat />} />
