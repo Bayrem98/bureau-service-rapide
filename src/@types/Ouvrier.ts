@@ -8,6 +8,6 @@ export default interface Ouvrier {
   adresse: string;
   profession: string;
   coverPath?: string;
-  avis?: string;
+  avis?: number;
   description?: string;
 }

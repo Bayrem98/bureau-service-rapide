@@ -118,7 +118,7 @@ const ProfessionelProfil = () => {
                         <Typography level="body-xs" fontWeight="lg">
                           Avis
                         </Typography>
-                        <Rating size={30} />
+                        <Rating size={30} initialValue={ratingValue} />
                       </div>
                     </Sheet>
                     <Box
