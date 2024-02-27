@@ -12,24 +12,57 @@ import { Link, useParams } from "react-router-dom";
 import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
 import { Rating } from "react-simple-star-rating";
+import axios from "axios";
 
 const ProfessionelProfil = () => {
   let { prof } = useParams();
+  let { userId } = useParams();
   const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
+  const [ouvrier, setOuvrier] = useState<Ouvrier | undefined>();
   const [boutonValider, setBoutonValider] = useState(false);
-  const [ratingValue, setRatingValue] = useState(0);
 
   useEffect(() => {
     getOuvriers({ profession: prof }, setOuvriers);
-  }, [prof]);
+    if (ouvriers) {
+      setOuvrier(ouvriers[0]);
+    }
+  }, [prof, userId, ouvriers]);
 
-  const handleClick = (userId: any) => {
+  const handleClick = (selectedOuvrier: Ouvrier) => {
+    setOuvrier(selectedOuvrier);
     setBoutonValider(true);
-    localStorage.setItem("selectedOuvrier", userId);
+  };
+
+  const handelAvis = (selectedOuvrier: Ouvrier, rate: number) => {
+    console.log("Ouvrier dans handelAvis :", selectedOuvrier);
+    if (!selectedOuvrier) {
+      console.error("Ouvrier non défini !");
+      return;
+    }
+
+    axios
+      .put(`http://localhost:5000/ouvrier/updateavis/${selectedOuvrier._id}`, {
+        avis: rate,
+      })
+      .then((response) => {
+        console.log("Avis ajouté pour l'ouvrier", response.data);
+        const updatedOuvriers = ouvriers.map((ouv) => {
+          if (ouv._id === selectedOuvrier._id) {
+            return { ...ouv, avis: rate };
+          }
+          return ouv;
+        });
+        setOuvriers(updatedOuvriers);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout de l'avis", error);
+      });
   };
 
   const handleRating = (rate: number) => {
-    setRatingValue(rate);
+    if (ouvrier) {
+      handelAvis(ouvrier, rate);
+    }
   };
 
   return (
@@ -118,7 +151,11 @@ const ProfessionelProfil = () => {
                         <Typography level="body-xs" fontWeight="lg">
                           Avis
                         </Typography>
-                        <Rating size={30} initialValue={ratingValue} />
+                        <Rating
+                          size={30}
+                          initialValue={ouvrier.avis}
+                          onClick={handleRating}
+                        />
                       </div>
                     </Sheet>
                     <Box
@@ -136,7 +173,7 @@ const ProfessionelProfil = () => {
                           <Button
                             color="success"
                             style={{ height: 60 }}
-                            onClick={() => handleClick(ouvrier._id)}
+                            onClick={() => handleClick(ouvrier)}
                           >
                             Valider la demande
                           </Button>
@@ -150,7 +187,7 @@ const ProfessionelProfil = () => {
                           <Button
                             variant="solid"
                             style={{ height: 60 }}
-                            onClick={handleClick}
+                            onClick={() => handleClick(ouvrier)}
                           >
                             Contacter
                           </Button>
