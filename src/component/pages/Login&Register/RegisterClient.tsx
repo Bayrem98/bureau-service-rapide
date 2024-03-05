@@ -25,7 +25,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
   const [num_tel, setNum_Tel] = useState<string>("");
   const [adresse, setAdresse] = useState<string>("");
   const [coverPath, setCoverPath] = useState<any>();
-  const [num_cin, setNum_cin] = useState<number>();
+  const [num_cin, setNum_cin] = useState<string>("");
 
   const changeCoverHandler = (event: any) => {
     const selectedCover = event.target.files[0];
@@ -72,7 +72,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
     setNum_Tel("");
     setAdresse("");
     setCoverPath("");
-    setNum_cin(0);
+    setNum_cin("");
   };
 
   return (
@@ -158,7 +158,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
                   label="Numéro CIN"
                   name="num_cin"
                   value={num_cin}
-                  onChange={(e) => setNum_cin(parseInt(e.target.value))}
+                  onChange={(e) => setNum_cin(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>

@@ -30,7 +30,7 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
   const [num_tel, setNum_Tel] = useState<string>(client.num_tel);
   const [adresse, setAdresse] = useState<string>(client.adresse);
   const [coverPath, setCoverPath] = useState<any>();
-  const [num_cin, setNum_cin] = useState<number>();
+  const [num_cin, setNum_cin] = useState<string>("");
 
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -86,7 +86,7 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
     setNum_Tel(client.num_tel);
     setAdresse(client.adresse);
     setCoverPath(client.coverPath);
-    setNum_cin(0);
+    setNum_cin("");
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -201,7 +201,7 @@ const ClientEdit = ({ client, refresh }: ClientEditPropsType) => {
                 id="num_cin"
                 name="num_cin"
                 type="number"
-                onChange={(e) => setNum_cin(parseInt(e.target.value))}
+                onChange={(e) => setNum_cin(e.target.value)}
               />
             </FormGroup>
           </Form>

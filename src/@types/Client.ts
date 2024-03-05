@@ -7,5 +7,5 @@ export default interface Client {
   adresse: string;
   description?: string;
   coverPath?: string;
-  num_cin?: number;
+  num_cin?: string;
 }

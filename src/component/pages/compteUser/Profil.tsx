@@ -53,7 +53,7 @@ const Profile = () => {
   const [num_tel, setNum_Tel] = useState<string>(client?.num_tel ?? "");
   const [adresse, setAdresse] = useState<string>(client?.adresse ?? "");
   const [coverPath, setCoverPath] = useState<any>(client?.coverPath ?? "");
-  const [num_cin, setNum_cin] = useState<number>(client?.num_cin ?? 0);
+  const [num_cin, setNum_cin] = useState<string>(client?.num_cin ?? "");
 
   const userId = localStorage.getItem("user_id");
 
@@ -380,7 +380,6 @@ const Profile = () => {
                         </span>{" "}
                         {ouvrier.profession}
                       </Grid>
-                     
                     </>
                   )}
                 </Grid>
@@ -483,7 +482,7 @@ const Profile = () => {
                 id="num_cin"
                 name="num_cin"
                 type="number"
-                onChange={(e) => setNum_cin(parseInt(e.target.value))}
+                onChange={(e) => setNum_cin(e.target.value)}
               />
             </FormGroup>
           </Form>

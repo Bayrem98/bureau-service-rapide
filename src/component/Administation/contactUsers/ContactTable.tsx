@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Contact from "../../../@types/Contact";
 import { getContacts } from "../../../actions/Contact/action";
 import { Input, Table } from "reactstrap";
-import ContactAdd from "./ContactAdd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import ContactDelete from "./ContactDelete";

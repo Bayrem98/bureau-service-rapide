@@ -92,7 +92,7 @@ const OuvriersTable = (props: Props) => {
                 ))
             ) : (
               <tr>
-                <td colSpan={9} className="text-center">
+                <td colSpan={10} className="text-center">
                   <FontAwesomeIcon icon={faBoxOpen} size="4x" />
                   <br />
                   Pas des données...
