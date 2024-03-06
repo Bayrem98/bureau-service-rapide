@@ -78,6 +78,35 @@
     border-radius: 10px;
   }
 
+  .contact-section {
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .contact-soussection {
+    margin-top: 50px;
+  }
+
+  .contact-title {
+    font-size: 25px;
+  }
+
+  .contact-para {
+    font-size: 16px;
+    width: 600px;
+  }
+
+  .contact-detail {
+    font-size: 16px;
+  }
+
+  .contact-map {
+    border: 0;
+    width: 100%;
+    height: 215px;
+    margin-bottom: 20px;
+  }
 
   @media screen and (max-width: 430px) {
 
@@ -86,7 +115,7 @@
       font-weight: lighter;
       position: relative;
       bottom: 5px;
-      left: 8%;
+      left: 3%;
     }
 
     .first-container {
@@ -140,16 +169,47 @@
       height: 120px;
       border-radius: 0px;
     }
+
+    .contact-section {
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  
+    .contact-soussection {
+      margin-top: 20px;
+    }
+  
+    .contact-title {
+      font-size: 15px;
+      font-weight: bold;
+    }
+  
+    .contact-para {
+      font-size: 12px;
+      width: 200px;
+    }
+  
+    .contact-detail {
+      font-size: 12px;
+    }
+
+    .contact-map {
+      border: 0;
+      width: 100%;
+      height: 155px;
+      margin-bottom: 5px;
+    }
   }
 
   @media screen and (max-width: 360px) {
 
     .footer {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: lighter;
       position: relative;
       bottom: 5px;
-      left: 7%;
+      left: 5%;
     }
 
     .first-container {
@@ -202,5 +262,36 @@
       width: 100px;
       height: 100px;
       border-radius: 0px;
+    }
+
+    .contact-section {
+      margin-top: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  
+    .contact-soussection {
+      margin-top: 20px;
+    }
+  
+    .contact-title {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  
+    .contact-para {
+      font-size: 10px;
+      width: 150px;
+    }
+  
+    .contact-detail {
+      font-size: 8px;
+    }
+
+    .contact-map {
+      border: 0;
+      width: 100%;
+      height: 155px;
+      margin-bottom: 5px;
     }
   }
