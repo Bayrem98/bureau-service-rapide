@@ -13,6 +13,20 @@ import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
 import { Rating } from "react-simple-star-rating";
 import axios from "axios";
+import { Modal } from "@mui/material";
+import { FormGroup, Input } from "reactstrap";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "white",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const ProfessionelProfil = () => {
   let { prof } = useParams();
@@ -20,6 +34,10 @@ const ProfessionelProfil = () => {
   const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
   const [ouvrier, setOuvrier] = useState<Ouvrier | undefined>();
   const [boutonValider, setBoutonValider] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [reclamation, setReclamation] = useState<string>("");
 
   useEffect(() => {
     getOuvriers({ profession: prof }, setOuvriers);
@@ -33,7 +51,11 @@ const ProfessionelProfil = () => {
     setBoutonValider(true);
   };
 
-  const handelAvis = (selectedOuvrier: Ouvrier, rate: number) => {
+  const handelAvis = (
+    selectedOuvrier: Ouvrier,
+    rate: number,
+    reclamation: string
+  ) => {
     console.log("Ouvrier dans handelAvis :", selectedOuvrier);
     if (!selectedOuvrier) {
       console.error("Ouvrier non défini !");
@@ -43,12 +65,13 @@ const ProfessionelProfil = () => {
     axios
       .put(`http://localhost:5000/ouvrier/updateavis/${selectedOuvrier._id}`, {
         avis: rate,
+        reclamation: reclamation,
       })
       .then((response) => {
         console.log("Avis ajouté pour l'ouvrier", response.data);
         const updatedOuvriers = ouvriers.map((ouv) => {
           if (ouv._id === selectedOuvrier._id) {
-            return { ...ouv, avis: rate };
+            return { ...ouv, avis: rate, reclamation: reclamation };
           }
           return ouv;
         });
@@ -61,7 +84,7 @@ const ProfessionelProfil = () => {
 
   const handleRating = (rate: number) => {
     if (ouvrier) {
-      handelAvis(ouvrier, rate);
+      handelAvis(ouvrier, rate, reclamation);
     }
   };
 
@@ -137,12 +160,6 @@ const ProfessionelProfil = () => {
                     >
                       <div>
                         <Typography level="body-xs" fontWeight="lg">
-                          Projets
-                        </Typography>
-                        <Typography fontWeight="lg">324</Typography>
-                      </div>
-                      <div>
-                        <Typography level="body-xs" fontWeight="lg">
                           Travail
                         </Typography>
                         <Typography fontWeight="lg">180</Typography>
@@ -194,11 +211,64 @@ const ProfessionelProfil = () => {
                         </a>
                       )}
                     </Box>
+                    <Box>
+                      <p
+                        style={{
+                          color: "blue",
+                          textDecoration: "underline",
+                          cursor: "pointer",
+                        }}
+                        onClick={handleOpen}
+                      >
+                        Vos Réclamation
+                      </p>
+                    </Box>
                   </CardContent>
                 </Card>
               ))}
           </div>
         </Box>
+        <div>
+          <Modal
+            open={open}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Button
+                onClick={handleClose}
+                style={{ float: "right", height: 5, width: 5 }}
+                color="danger"
+              >
+                X
+              </Button>
+              <Typography id="modal-modal-title" component="h2">
+                Réclamez vous :
+              </Typography>
+              <br />
+              <FormGroup>
+                <Input
+                  value={reclamation}
+                  id="message"
+                  name="message"
+                  type="textarea"
+                  placeholder="Vos Réclamation..."
+                  onChange={(e) => setReclamation(e.target.value)}
+                />
+              </FormGroup>
+              <Button
+                onClick={() => {
+                  if (ouvrier) {
+                    handelAvis(ouvrier, 0, reclamation);
+                  }
+                }}
+                style={{ float: "right" }}
+              >
+                Valider
+              </Button>
+            </Box>
+          </Modal>
+        </div>
       </div>
     </>
   );

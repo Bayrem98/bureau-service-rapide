@@ -10,4 +10,5 @@ export default interface Ouvrier {
   coverPath?: string;
   avis?: number;
   description?: string;
+  reclamation?: string;
 }

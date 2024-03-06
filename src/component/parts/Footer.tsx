@@ -2,12 +2,8 @@ const Footer = () => {
   return (
     <>
       <span
+        className="footer"
         style={{
-          fontSize: 16,
-          fontWeight: "lighter",
-          position: "relative",
-          bottom: 5,
-          left: "33%",
           color: "#1976d2",
         }}
       >
