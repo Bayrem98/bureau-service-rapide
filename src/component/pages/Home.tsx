@@ -56,7 +56,7 @@ const Home = () => {
     <>
       <div className="first-container">
         <div className="home-section1">
-          <div className="d-flex justify-content-between">
+          <div className="homed-flex justify-content-between">
             <div>
               <h1 className="home-title" style={{ color: "#1976d2" }}>
                 Bienvenue chez
@@ -107,7 +107,7 @@ const Home = () => {
             backgroundColor: "#1976d2",
           }}
         >
-          <div className="d-flex justify-content-between">
+          <div className="homed-flex justify-content-between">
             <Card>
               <img
                 className="home-image-bottom-cards"
