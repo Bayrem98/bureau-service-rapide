@@ -71,7 +71,7 @@ const Login = () => {
           Cookies.set(
             `access_token_${cookieName}`,
             token,
-            { expires: 5 / 24 } // 1 heure (1/24 de la journée)
+            { expires: 20 / 24 } // 1 heure (1/24 de la journée)
           );
         }
         window.location.reload();

@@ -118,87 +118,76 @@ function App() {
             />
           </div>
           {isCardOpen && (
-            <Card
-              style={{
-                width: 350,
-                position: "absolute",
-                bottom: 90,
-                right: 10,
-              }}
-            >
-              <CardHeader style={{ backgroundColor: "#25d366", height: 120 }}>
-                <span
-                  style={{
-                    color: "white",
-                    fontSize: 20,
-                    position: "absolute",
-                    right: 10,
-                    top: 1,
-                    cursor: "pointer",
-                  }}
-                  onClick={handleClick}
+            <div className="whatsapp-card">
+              <Card>
+                <CardHeader
+                  className="whatsapp-card-header"
+                  style={{ backgroundColor: "#25d366" }}
                 >
-                  X
-                </span>
-                <span
-                  style={{
-                    color: "white",
-                    fontSize: 20,
-                  }}
-                >
-                  Bonjour !
-                </span>
-                <br />
-                <br />
-                <span
-                  style={{
-                    fontSize: 17,
-                    textAlign: "justify",
-                    color: "white",
-                  }}
-                >
-                  Cliquez sur le contact ci-dessous pour discuter sur
-                  WhatsApp...
-                </span>
-              </CardHeader>
-              <CardBody>
-                <a
-                  data-action="open"
-                  data-phone="52368419"
-                  data-message
-                  href="https://web.whatsapp.com/send?phone=+21652368419&text="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                    fontSize: 17,
-                    fontWeight: "bold",
-                  }}
-                >
-                  <img
-                    src="/image/logo/logo 2.png"
-                    alt="."
-                    width={80}
-                    height={60}
-                    style={{ borderRadius: 10, marginRight: 10 }}
-                  />
-                  L'équipe Service Rapide
-                </a>
-              </CardBody>
-              <Link to={"/contact"} style={{ textDecoration: "none" }}>
-                <CardFooter style={{ height: 40 }}>
-                  <p
+                  <span
+                    className="whatsapp-card-header-close"
                     style={{
-                      fontSize: 15,
+                      color: "white",
+                    }}
+                    onClick={handleClick}
+                  >
+                    X
+                  </span>
+                  <span
+                    className="whatsapp-card-header-title"
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    Bonjour !
+                  </span>
+                  <br />
+                  <br />
+                  <span
+                    className="whatsapp-card-header-para"
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    Cliquez sur le contact ci-dessous pour discuter sur
+                    WhatsApp...
+                  </span>
+                </CardHeader>
+                <CardBody>
+                  <a
+                    className="whatsapp-card-body-link1"
+                    data-action="open"
+                    data-phone="52368419"
+                    data-message
+                    href="https://web.whatsapp.com/send?phone=+21652368419&text="
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
                       color: "black",
                     }}
                   >
-                    Nous contacter par e-mail...
-                  </p>
-                </CardFooter>
-              </Link>
-            </Card>
+                    <img
+                      className="whatsapp-card-body-image"
+                      src="/image/logo/logo 2.png"
+                      alt="."
+                    />
+                    L'équipe Service Rapide
+                  </a>
+                </CardBody>
+                <Link to={"/contact"} style={{ textDecoration: "none" }}>
+                  <CardFooter className="whatsapp-card-footer">
+                    <p
+                      className="whatsapp-card-body-link2"
+                      style={{
+                        color: "black",
+                      }}
+                    >
+                      Nous contacter par e-mail...
+                    </p>
+                  </CardFooter>
+                </Link>
+              </Card>
+            </div>
           )}
         </>
       )}

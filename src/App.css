@@ -19,6 +19,55 @@
     transition: background-color 0.3s ease-in-out;
   }
 
+  .whatsapp-card {
+    width: 350px;
+    position: fixed;
+    bottom: 90px;
+    right: 10px;
+  }
+
+  .whatsapp-card-header {
+    height: 120px;
+  }
+
+  .whatsapp-card-header-close {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 1px;
+    cursor: pointer;
+  }
+
+  .whatsapp-card-header-title {
+    font-size: 20px;
+  }
+
+  .whatsapp-card-header-para {
+    font-size: 17px;
+    text-align: justify;
+  }
+
+  .whatsapp-card-body-link1 {
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+  }
+
+  .whatsapp-card-body-image {
+    width: 80px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+
+  .whatsapp-card-footer {
+    height: 40px;
+  }
+
+  .whatsapp-card-body-link2 {
+    font-size: 15px;
+  }
+
   .footer {
     font-size: 16px;
     font-weight: lighter;
@@ -176,6 +225,76 @@
 
   @media screen and (max-width: 430px) {
 
+    .whatsapp-bubble {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      background-color: #25d366;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      text-align: center;
+      line-height: 45px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      cursor: pointer;
+    }
+    
+    /* Effet de survol de la bulle */
+    .whatsapp-bubble:hover {
+      background-color: #128C7E; /* Couleur de fond au survol */
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .whatsapp-card {
+      width: 300px;
+      position: fixed;
+      bottom: 70px;
+      right: 10px;
+    }
+  
+    .whatsapp-card-header {
+      height: 110px;
+    }
+  
+    .whatsapp-card-header-close {
+      font-size: 20px;
+      position: absolute;
+      right: 10px;
+      top: 1px;
+      cursor: pointer;
+    }
+  
+    .whatsapp-card-header-title {
+      font-size: 18px;
+    }
+  
+    .whatsapp-card-header-para {
+      font-size: 15px;
+      text-align: justify;
+    }
+  
+    .whatsapp-card-body-link1 {
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  
+    .whatsapp-card-body-image {
+      width: 60px;
+      height: 50px;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+  
+    .whatsapp-card-footer {
+      height: 35px;
+    }
+  
+    .whatsapp-card-body-link2 {
+      font-size: 14px;
+    }
+
     .footer {
       font-size: 14px;
       font-weight: lighter;
@@ -319,6 +438,76 @@
   }
 
   @media screen and (max-width: 360px) {
+
+    .whatsapp-bubble {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      background-color: #25d366;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      cursor: pointer;
+    }
+    
+    /* Effet de survol de la bulle */
+    .whatsapp-bubble:hover {
+      background-color: #128C7E; /* Couleur de fond au survol */
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .whatsapp-card {
+      width: 250px;
+      position: fixed;
+      bottom: 70px;
+      right: 10px;
+    }
+  
+    .whatsapp-card-header {
+      height: 107px;
+    }
+  
+    .whatsapp-card-header-close {
+      font-size: 20px;
+      position: absolute;
+      right: 10px;
+      top: 1px;
+      cursor: pointer;
+    }
+  
+    .whatsapp-card-header-title {
+      font-size: 16px;
+    }
+  
+    .whatsapp-card-header-para {
+      font-size: 13px;
+      text-align: justify;
+    }
+  
+    .whatsapp-card-body-link1 {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+  
+    .whatsapp-card-body-image {
+      width: 50px;
+      height: 40px;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+  
+    .whatsapp-card-footer {
+      height: 32px;
+    }
+  
+    .whatsapp-card-body-link2 {
+      font-size: 12px;
+    }
 
     .footer {
       font-size: 11px;
