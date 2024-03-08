@@ -90,30 +90,22 @@ const ProfessionelProfil = () => {
 
   return (
     <>
-      <h3 style={{ textAlign: "center", marginTop: 20 }}>
-        Les Profils Disponible
-      </h3>
-      <div style={{ marginTop: 20, marginLeft: 20, marginBottom: 250 }}>
+      <h3 className="prof-profil-page-title">Les Profils Disponible</h3>
+      <div className="prof-profil-page-section">
         <Box
+          className="prof-profil-page-box-card"
           sx={{
-            width: 252,
-            position: "relative",
             overflow: { xs: "auto", sm: "initial" },
           }}
         >
-          <div className="d-flex justify-content-between">
+          <div className="prof-profil-view-cards">
             {Array.isArray(ouvriers) &&
               ouvriers.map((ouvrier) => (
-                <Card
-                  key={ouvrier._id}
-                  orientation="horizontal"
-                  style={{ marginRight: 20 }}
-                >
+                <Card key={ouvrier._id} orientation="horizontal">
                   <AspectRatio
+                    className="prof-profil-cards-image"
                     flex
                     ratio="1"
-                    maxHeight={182}
-                    sx={{ minWidth: 182 }}
                   >
                     <img
                       src={ouvrier.coverPath}

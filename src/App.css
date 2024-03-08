@@ -138,8 +138,6 @@
     
   }
 
-  
-
   .secteur-page-cards-image {
     height: 100px;
   }
@@ -147,6 +145,34 @@
   .secteur-page-cards-para {
     font-size: 12px;
   }
+
+  .prof-profil-page-title {
+    font-size: 25px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .prof-profil-page-section {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 250px;
+  }
+
+  .prof-profil-page-box-card {
+    width: 470px;
+    position: relative;
+  }
+
+  .prof-profil-view-cards {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .prof-profil-cards-image {
+    min-width: 182px;
+  }
+
+  
 
   @media screen and (max-width: 430px) {
 
@@ -261,11 +287,34 @@
   
   
     .secteur-page-cards-image {
-      height: 70px;
+      height: 120px;
+    }
+
+    .prof-profil-page-title {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 15px;
     }
   
-    .secteur-page-cards-para {
-      font-size: 1px;
+    .prof-profil-page-section {
+      margin-top: 20px;
+      margin-left: 4px;
+    }
+  
+    .prof-profil-page-box-card {
+      width: 420px;
+      position: relative;
+      padding: 10px;
+    }
+  
+    .prof-profil-view-cards {
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  
+    .prof-profil-cards-image {
+      min-width: 125px;
+      max-height: 250px;
     }
   }
 
@@ -378,5 +427,35 @@
   
     .d-flex {
       flex-direction: column;
+    }
+
+    .secteur-page-cards-image {
+      height: 100px;
+    }
+
+    .prof-profil-page-title {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 15px;
+    }
+  
+    .prof-profil-page-section {
+      margin-top: 20px;
+      margin-left: -8px;
+    }
+  
+    .prof-profil-page-box-card {
+      width: 360px;
+      position: relative;
+    }
+  
+    .prof-profil-view-cards {
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  
+    .prof-profil-cards-image {
+      width: 100px;
+      height: 200px;
     }
   }
