@@ -12,8 +12,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Badge } from "@mui/material";
-import MailIcon from "@mui/icons-material/Mail";
 import { Link, useNavigate } from "react-router-dom";
 import Client from "../../@types/Client";
 import Ouvrier from "../../@types/Ouvrier";
@@ -281,10 +279,10 @@ function Navbar() {
                   </Link> */}
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Paramétres">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar
-                  alt="Remy Sharp"
+                  alt="."
                   src={client?.coverPath || ouvrier?.coverPath}
                 />
               </IconButton>
