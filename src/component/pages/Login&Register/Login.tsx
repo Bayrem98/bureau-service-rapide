@@ -122,7 +122,7 @@ const Login = () => {
           <Form>
             <Box sx={{ mt: 1 }}>
               <FormControl fullWidth>
-                <InputLabel>Tu es qui ?</InputLabel>
+                <InputLabel>Tu es qui ? </InputLabel>
                 <Select
                   required
                   fullWidth
