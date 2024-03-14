@@ -193,43 +193,31 @@ const Profile = () => {
           </List>
         </div>
 
-        <div
-          className="d-flex justify-content-between"
-          style={{ marginTop: -100, marginRight: 150, marginBottom: 200 }}
-        >
+        <div className="profilpage d-flex justify-content-between">
           <Card
+            className="profil-page-card-image"
             style={{
-              marginTop: 260,
-              width: 250,
-              height: 220,
               borderColor: "#1976d2",
-              marginRight: 30,
+              height: 220,
             }}
           >
-            <IconButton style={{ marginLeft: 15, marginRight: 15 }}>
-              <Avatar
-                alt="Remy Sharp"
+            <IconButton className="profil-page-card-image-icon">
+              <img
+                className="profil-page-card-image-avatar"
+                alt={client?.nom || ouvrier?.nom}
                 src={
                   client ? client.coverPath : ouvrier ? ouvrier.coverPath : ""
                 }
-                style={{ width: 200, height: 200 }}
               />
             </IconButton>
           </Card>
           <Container maxWidth="xs">
             <CssBaseline />
-            <Box
-              sx={{
-                mt: 20,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
+            <Box className="profil-page-compte">
               <Avatar sx={{ m: 1, bgcolor: "primary.light" }}>
                 <HowToReg />
               </Avatar>
-              <Typography variant="h5">Mon Compte</Typography>
+              <Typography variant="h6">Mon Compte</Typography>
               <Box sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   {client && (
