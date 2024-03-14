@@ -6,12 +6,11 @@ import ListItemText from "@mui/material/ListItemText";
 import {
   AccountBox,
   NoteAltRounded,
-  NotesRounded,
   PaddingRounded,
   VerifiedRounded,
   VerifiedUser,
 } from "@mui/icons-material";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -113,12 +112,6 @@ const DemandeEnAttente = () => {
                 <ListItemText primary="Mes reclamations" />
               </ListItemButton>
             </Link>
-            <ListItemButton>
-              <ListItemIcon>
-                <NotesRounded color="primary" />
-              </ListItemIcon>
-              <ListItemText primary="Mes avis" />
-            </ListItemButton>
           </List>
         </div>
         {ouvrier ? (

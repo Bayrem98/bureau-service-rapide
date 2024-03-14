@@ -8,7 +8,6 @@ import {
   AccountBox,
   HowToReg,
   NoteAltRounded,
-  NotesRounded,
   PaddingRounded,
   VerifiedRounded,
   VerifiedUser,
@@ -182,12 +181,6 @@ const Profile = () => {
                     <ListItemText primary="Mes reclamations" />
                   </ListItemButton>
                 </Link>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <NotesRounded color="primary" />
-                  </ListItemIcon>
-                  <ListItemText primary="Mes avis" />
-                </ListItemButton>
               </>
             )}
           </List>

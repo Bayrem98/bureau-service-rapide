@@ -6,7 +6,6 @@ import ListItemText from "@mui/material/ListItemText";
 import {
   AccountBox,
   NoteAltRounded,
-  NotesRounded,
   PaddingRounded,
   VerifiedRounded,
   VerifiedUser,
@@ -94,12 +93,6 @@ const DemandeCloturee = () => {
                 <ListItemText primary="Mes reclamations" />
               </ListItemButton>
             </Link>
-            <ListItemButton>
-              <ListItemIcon>
-                <NotesRounded color="primary" />
-              </ListItemIcon>
-              <ListItemText primary="Mes avis" />
-            </ListItemButton>
           </List>
         </div>
         <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
