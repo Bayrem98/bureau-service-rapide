@@ -8,13 +8,14 @@ import {
   Typography,
 } from "@mui/joy";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Ouvrier from "../../../@types/Ouvrier";
 import { getOuvriers } from "../../../actions/Ouvrier/action";
 import { Rating } from "react-simple-star-rating";
 import axios from "axios";
 import { Modal } from "@mui/material";
 import { FormGroup, Input } from "reactstrap";
+import { ArrowBack, ArrowCircleLeftRounded } from "@mui/icons-material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -38,6 +39,8 @@ const ProfessionelProfil = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [reclamation, setReclamation] = useState<string>("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOuvriers({ profession: prof }, setOuvriers);
@@ -91,6 +94,12 @@ const ProfessionelProfil = () => {
   return (
     <>
       <h3 className="prof-profil-page-title">Les Profils Disponible</h3>
+      <ArrowCircleLeftRounded
+        className="prof-profil-page-arrowback"
+        color="primary"
+        style={{ cursor: "pointer", fontSize: 50, marginLeft: 10 }}
+        onClick={() => navigate(-1)}
+      />
       <div className="prof-profil-page-section">
         <Box
           className="prof-profil-page-box-card"
