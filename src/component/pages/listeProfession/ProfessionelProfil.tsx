@@ -15,7 +15,7 @@ import { Rating } from "react-simple-star-rating";
 import axios from "axios";
 import { Modal } from "@mui/material";
 import { FormGroup, Input } from "reactstrap";
-import { ArrowBack, ArrowCircleLeftRounded } from "@mui/icons-material";
+import { ArrowCircleLeftRounded } from "@mui/icons-material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -34,7 +34,9 @@ const ProfessionelProfil = () => {
   let { userId } = useParams();
   const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
   const [ouvrier, setOuvrier] = useState<Ouvrier | undefined>();
-  const [boutonValider, setBoutonValider] = useState(false);
+  const [boutonValider, setBoutonValider] = useState<string | undefined>(
+    undefined
+  );
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,7 +53,9 @@ const ProfessionelProfil = () => {
 
   const handleClick = (selectedOuvrier: Ouvrier) => {
     setOuvrier(selectedOuvrier);
-    setBoutonValider(true);
+    if (selectedOuvrier._id) {
+      setBoutonValider(selectedOuvrier._id);
+    }
   };
 
   const handelAvis = (
@@ -186,7 +190,7 @@ const ProfessionelProfil = () => {
                       <Card variant="outlined" color="primary">
                         {ouvrier.num_tel}
                       </Card>
-                      {boutonValider ? (
+                      {boutonValider === ouvrier._id && ouvrier._id ? (
                         <Link to={`/demandeenattente/${ouvrier._id}`}>
                           <Button
                             color="success"
