@@ -91,7 +91,7 @@ const MessagePage = () => {
               variant="h5"
               gutterBottom
               component="div"
-              sx={{ p: 2, pb: 0 }}
+              sx={{ p: 1, pb: 0 }}
             >
               Boite reception
             </Typography>
