@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Link, useNavigate } from "react-router-dom";
 import Client from "../../@types/Client";
 import Ouvrier from "../../@types/Ouvrier";
@@ -20,6 +19,7 @@ import { getClient } from "../../actions/Client/action";
 import { getOuvrier } from "../../actions/Ouvrier/action";
 import { getAdmin } from "../../actions/Admin/action";
 import Cookies from "js-cookie";
+import { BlurCircularRounded } from "@mui/icons-material";
 
 function Navbar() {
   const [client, setClient] = React.useState<Client | null>(null);
@@ -74,7 +74,7 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <BlurCircularRounded sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -167,7 +167,7 @@ function Navbar() {
               )}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <BlurCircularRounded sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
