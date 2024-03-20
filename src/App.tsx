@@ -155,7 +155,7 @@ function App() {
                     data-action="open"
                     data-phone="52368419"
                     data-message
-                    href="https://web.whatsapp.com/send?phone=+21652368419&text="
+                    href="https://wa.me/21652368419?text=Bonjour je veux un coup de aide"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
