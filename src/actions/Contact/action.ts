@@ -3,7 +3,7 @@ import Contact from "../../@types/Contact";
 
 export function getContacts(callback: (data: Contact[]) => void) {
   axios
-    .get(`http://localhost:5000/contact`, {
+    .get(`${process.env.REACT_APP_API_URL}/contact`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -18,7 +18,7 @@ export function getContacts(callback: (data: Contact[]) => void) {
 
 export function getContact(id: string, callback: (data: Contact) => void) {
   axios
-    .get(`http://localhost:5000/contact/` + id, {
+    .get(`${process.env.REACT_APP_API_URL}/contact/` + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -33,7 +33,7 @@ export function getContact(id: string, callback: (data: Contact) => void) {
 
 export function addContact(contact: Contact, callback: () => void) {
   axios
-    .post(`http://localhost:5000/contact`, contact)
+    .post(`${process.env.REACT_APP_API_URL}/contact`, contact)
     .then(() => {
       callback();
     })
@@ -44,7 +44,7 @@ export function addContact(contact: Contact, callback: () => void) {
 
 export function editContact(contact: Contact, callback: () => void) {
   axios
-    .put(`http://localhost:5000/contact/${contact._id}`, contact)
+    .put(`${process.env.REACT_APP_API_URL}/contact/${contact._id}`, contact)
     .then(() => {
       callback();
     })
@@ -55,7 +55,7 @@ export function editContact(contact: Contact, callback: () => void) {
 
 export function deleteContact(contact: Contact, callback: () => void) {
   axios
-    .delete(`http://localhost:5000/contact/${contact._id}`)
+    .delete(`${process.env.REACT_APP_API_URL}/contact/${contact._id}`)
     .then(() => {
       callback();
     })

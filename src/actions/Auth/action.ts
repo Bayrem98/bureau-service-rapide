@@ -8,7 +8,7 @@ export function loginAdmin(
   fallback: () => void
 ) {
   axios
-    .post(`http://localhost:5000/auth/loginadmin`, {
+    .post(`${process.env.REACT_APP_API_URL}/auth/loginadmin`, {
       num_tel: num_tel,
       password: pass,
     })
@@ -28,7 +28,7 @@ export function loginC(
   fallback: () => void
 ) {
   axios
-    .post(`http://localhost:5000/auth/login`, {
+    .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
       num_tel: num_tel,
       password: pass,
     })
@@ -48,7 +48,7 @@ export function loginO(
   fallback: () => void
 ) {
   axios
-    .post(`http://localhost:5000/auth/logina`, {
+    .post(`${process.env.REACT_APP_API_URL}/auth/logina`, {
       num_tel: num_tel,
       password: pass,
     })

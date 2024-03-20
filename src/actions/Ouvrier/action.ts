@@ -6,7 +6,7 @@ export function getOuvriers(
   callback: (data: Ouvrier[]) => void
 ) {
   axios
-    .get(`http://localhost:5000/ouvrier`, {
+    .get(`${process.env.REACT_APP_API_URL}/ouvrier`, {
       params: query,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -22,7 +22,7 @@ export function getOuvriers(
 
 export function getOuvrier(id: string, callback: (data: Ouvrier) => void) {
   axios
-    .get(`http://localhost:5000/ouvrier/` + id, {
+    .get(`${process.env.REACT_APP_API_URL}/ouvrier/` + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -37,7 +37,7 @@ export function getOuvrier(id: string, callback: (data: Ouvrier) => void) {
 
 export function addOuvrier(ouvrier: Ouvrier, callback: () => void) {
   axios
-    .post(`http://localhost:5000/ouvrier`, ouvrier)
+    .post(`${process.env.REACT_APP_API_URL}/ouvrier`, ouvrier)
     .then(() => {
       callback();
     })
@@ -48,7 +48,7 @@ export function addOuvrier(ouvrier: Ouvrier, callback: () => void) {
 
 export function editOuvrier(ouvrier: Ouvrier, callback: () => void) {
   axios
-    .put(`http://localhost:5000/ouvrier/${ouvrier._id}`, ouvrier)
+    .put(`${process.env.REACT_APP_API_URL}/ouvrier/${ouvrier._id}`, ouvrier)
     .then(() => {
       callback();
     })
@@ -59,7 +59,7 @@ export function editOuvrier(ouvrier: Ouvrier, callback: () => void) {
 
 export function deleteOuvrier(ouvrier: Ouvrier, callback: () => void) {
   axios
-    .delete(`http://localhost:5000/ouvrier/${ouvrier._id}`)
+    .delete(`${process.env.REACT_APP_API_URL}/ouvrier/${ouvrier._id}`)
     .then(() => {
       callback();
     })

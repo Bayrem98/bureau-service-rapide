@@ -57,14 +57,14 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
     const selectedCover = event.target.files[0];
     const formData = new FormData();
     formData.append("file", selectedCover);
-    fetch(`http://localhost:5000/upload/cover`, {
+    fetch(`${process.env.REACT_APP_API_URL}/upload/cover`, {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
-        setCoverPath(`http://localhost:5000/upload/cover/${result.filename}`);
+        setCoverPath(`${process.env.REACT_APP_API_URL}/upload/cover/${result.filename}`);
       })
       .catch((error) => {
         console.error("Error:", error);

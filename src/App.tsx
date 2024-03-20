@@ -13,7 +13,6 @@ import Navbar from "./component/parts/Navbard";
 import ListSecteurPage from "./component/pages/ListSecteurPage";
 import Contact from "./component/pages/Contact";
 import Profile from "./component/pages/compteUser/Profil";
-import MessagePage from "./component/pages/MessagePage";
 import Home from "./component/pages/Home";
 import Footer from "./component/parts/Footer";
 import DemandeEnAttente from "./component/pages/compteUser/DemandeEnAttente";
@@ -24,7 +23,6 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import "react-international-phone/style.css";
 import ProfessionelProfil from "./component/pages/listeProfession/ProfessionelProfil";
 import Cookies from "js-cookie";
-import EspaceChat from "./component/pages/EspaceChat";
 import ContactsTable from "./component/Administation/contactUsers/ContactTable";
 import { Card, CardBody, CardFooter, CardHeader } from "reactstrap";
 
@@ -104,8 +102,6 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/profil" element={<Profile />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/messagepage" element={<MessagePage />} />
-              <Route path="/espacechat" element={<EspaceChat />} />
             </Routes>
           </div>
           <Footer />

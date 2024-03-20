@@ -52,7 +52,7 @@ const Login = () => {
     const authEndpoint = isClient ? "login" : isAdmin ? "loginadmin" : "logina";
 
     axios
-      .post(`http://localhost:5000/auth/${authEndpoint}`, {
+      .post(`${process.env.REACT_APP_API_URL}/auth/${authEndpoint}`, {
         num_tel,
         password,
       })

@@ -70,7 +70,7 @@ const ProfessionelProfil = () => {
     }
 
     axios
-      .put(`http://localhost:5000/ouvrier/updateavis/${selectedOuvrier._id}`, {
+      .put(`${process.env.REACT_APP_API_URL}/ouvrier/updateavis/${selectedOuvrier._id}`, {
         avis: rate,
         reclamation: reclamation,
       })

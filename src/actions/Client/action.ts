@@ -3,7 +3,7 @@ import Client from "../../@types/Client";
 
 export function getClients(callback: (data: Client[]) => void) {
   axios
-    .get(`http://localhost:5000/client`, {
+    .get(`${process.env.REACT_APP_API_URL}/client`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -18,7 +18,7 @@ export function getClients(callback: (data: Client[]) => void) {
 
 export function getClient(id: string, callback: (data: Client) => void) {
   axios
-    .get(`http://localhost:5000/client/` + id, {
+    .get(`${process.env.REACT_APP_API_URL}/client/` + id, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
@@ -33,7 +33,7 @@ export function getClient(id: string, callback: (data: Client) => void) {
 
 export function addClient(client: Client, callback: () => void) {
   axios
-    .post(`http://localhost:5000/client`, client)
+    .post(`${process.env.REACT_APP_API_URL}/client`, client)
     .then(() => {
       callback();
     })
@@ -44,7 +44,7 @@ export function addClient(client: Client, callback: () => void) {
 
 export function editClient(client: Client, callback: () => void) {
   axios
-    .put(`http://localhost:5000/client/${client._id}`, client)
+    .put(`${process.env.REACT_APP_API_URL}/client/${client._id}`, client)
     .then(() => {
       callback();
     })
@@ -55,7 +55,7 @@ export function editClient(client: Client, callback: () => void) {
 
 export function deleteClient(client: Client, callback: () => void) {
   axios
-    .delete(`http://localhost:5000/client/${client._id}`)
+    .delete(`${process.env.REACT_APP_API_URL}/client/${client._id}`)
     .then(() => {
       callback();
     })
