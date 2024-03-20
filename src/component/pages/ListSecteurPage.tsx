@@ -345,7 +345,7 @@ const ListSecteurPage = () => {
                 <CardMedia
                   className="secteur-page-cards-image"
                   component="img"
-                  image="/image/droitsciencespolitiques.jpg"
+                  image="/image/Droitsciencespolitiques.jpg"
                   alt="Droit, sciences politiques"
                 />
                 <CardContent>
