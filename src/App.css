@@ -1,3 +1,13 @@
+.inscri-role-button1 {
+  width: 270px;
+  height: 70px;
+}
+
+.inscri-role-button2 {
+  width: 270px;
+  height: 70px;
+}
+
 .whatsapp-bubble {
     position: fixed;
     bottom: 20px;
@@ -492,6 +502,16 @@
   }
 
   @media screen and (max-width: 360px) {
+
+    .inscri-role-button1 {
+      width: 140px;
+      height: 80px;
+    }
+
+    .inscri-role-button2 {
+      width: 140px;
+      height: 80px;
+    }
 
     .whatsapp-bubble {
       position: fixed;

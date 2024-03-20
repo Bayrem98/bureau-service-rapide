@@ -17,7 +17,7 @@ const RolePage = () => {
         <CssBaseline />
         <Box
           sx={{
-            mt: 30,
+            mt: 20,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -31,18 +31,18 @@ const RolePage = () => {
             <Grid className="d-flex justify-content-between">
               <Link to={"/registerouvrier"}>
                 <Button
+                  className="inscri-role-button1"
                   variant="contained"
-                  sx={{ mt: 3, mb: 5 }}
-                  style={{ marginRight: 70, width: 200, height: 61 }}
+                  sx={{ mt: 5, mb: 1, mr: 7 }}
                 >
                   Vous etes Professionnel ?
                 </Button>
               </Link>
               <Link to={"/registerclient"}>
                 <Button
+                  className="inscri-role-button2"
                   variant="contained"
-                  sx={{ mt: 3, mb: 5 }}
-                  style={{ width: 200, height: 61 }}
+                  sx={{ mt: 5, mb: 1 }}
                 >
                   Vous etes Client ?
                 </Button>
