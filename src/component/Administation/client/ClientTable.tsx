@@ -20,12 +20,9 @@ const ClientsTable = (props: Props) => {
 
   return (
     <div className="background-app">
-      <div
-        className="d-flex justify-content-between"
-        style={{ paddingTop: 80, paddingLeft: 25, paddingRight: 25 }}
-      >
-        <h3>Tableau des Clients</h3>
-        <div className="">
+      <div className="table d-flex justify-content-between">
+        <h3 className="table-data-title">Tableau des Clients</h3>
+        <div className="input-search">
           <Input
             type="text"
             placeholder="Chercher içi..."
@@ -33,13 +30,14 @@ const ClientsTable = (props: Props) => {
             onChange={(e) => setFilter(e.target.value)}
           />
         </div>
-        <ClientAdd refresh={() => getClients(setClients)} />
+        <div className="plus">
+          <ClientAdd refresh={() => getClients(setClients)} />
+        </div>
       </div>
-      <br />
-      <div style={{ marginLeft: 50, marginRight: 50, paddingBottom: 420 }}>
+      <div className="table-data">
         <Table bordered responsive hover>
           <thead>
-            <tr>
+            <tr className="table-head">
               <th>Nom</th>
               <th>Prénom</th>
               <th>password</th>
@@ -57,7 +55,7 @@ const ClientsTable = (props: Props) => {
                   client.nom.toLowerCase().includes(filter.toLowerCase())
                 )
                 .map((client) => (
-                  <tr key={client._id}>
+                  <tr key={client._id} className="table-body">
                     <td>{client.nom}</td>
                     <td>{client.prenom}</td>
                     <td>{client.password}</td>

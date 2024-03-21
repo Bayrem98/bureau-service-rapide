@@ -18,20 +18,13 @@ const ContactsTable = (props: Props) => {
 
   return (
     <>
-      <div
-        style={{
-          marginTop: 50,
-          marginRight: 20,
-          marginLeft: 20,
-          marginBottom: 250,
-        }}
-      >
-        <div className="d-flex justify-content-between">
-          <div className="">
-            {" "}
-            <h3>Message et Commentaire des Utilisateurs</h3>
-          </div>
-          <div className="">
+      <div className="background-app">
+        <div className="table d-flex justify-content-between">
+          {" "}
+          <h3 className="table-data-title">
+            Message et Commentaire des Utilisateurs
+          </h3>
+          <div className="input-search">
             <Input
               type="text"
               placeholder="Chercher içi..."
@@ -40,50 +33,53 @@ const ContactsTable = (props: Props) => {
             />
           </div>
         </div>
-        <br />
-        <Table bordered responsive hover>
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Numéro de Tél</th>
-              <th>Email</th>
-              <th>Message/Commentaire</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.length ? (
-              contacts
-                .filter((contact) =>
-                  contact.nom.toLowerCase().includes(filter.toLocaleLowerCase())
-                )
-                .map((contact) => (
-                  <tr key={contact._id}>
-                    <td>{contact.nom}</td>
-                    <td>{contact.prenom}</td>
-                    <td>{contact.num_tel}</td>
-                    <td>{contact.email}</td>
-                    <td>{contact.message}</td>
-                    <td>
-                      <ContactDelete
-                        contact={contact}
-                        refresh={() => getContacts(setContacts)}
-                      />
-                    </td>
-                  </tr>
-                ))
-            ) : (
-              <tr>
-                <td colSpan={6} className="text-center">
-                  <FontAwesomeIcon icon={faBoxOpen} size="4x" />
-                  <br />
-                  Pas des données...
-                </td>
+        <div className="table-data">
+          <Table bordered responsive hover>
+            <thead>
+              <tr className="table-head">
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Numéro de Tél</th>
+                <th>Email</th>
+                <th>Message/Commentaire</th>
+                <th>Action</th>
               </tr>
-            )}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {contacts.length ? (
+                contacts
+                  .filter((contact) =>
+                    contact.nom
+                      .toLowerCase()
+                      .includes(filter.toLocaleLowerCase())
+                  )
+                  .map((contact) => (
+                    <tr key={contact._id} className="table-body">
+                      <td>{contact.nom}</td>
+                      <td>{contact.prenom}</td>
+                      <td>{contact.num_tel}</td>
+                      <td>{contact.email}</td>
+                      <td>{contact.message}</td>
+                      <td>
+                        <ContactDelete
+                          contact={contact}
+                          refresh={() => getContacts(setContacts)}
+                        />
+                      </td>
+                    </tr>
+                  ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="text-center">
+                    <FontAwesomeIcon icon={faBoxOpen} size="4x" />
+                    <br />
+                    Pas des données...
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </>
   );

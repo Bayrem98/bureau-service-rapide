@@ -86,6 +86,24 @@
     left: 33%;
   }
 
+  .table {
+    margin-top: 50px;
+  }
+
+  .table-data-title {
+    font-size: 22px;
+  }
+
+  .input-search {
+    width: 250px;
+  }
+
+  .table-data {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 400px;
+  }
+
   .first-container {
     margin-top: 40px;
   }
@@ -342,6 +360,43 @@
       left: 3%;
     }
 
+    .table {
+      margin-top: 30px;
+    }
+  
+    .table-data-title {
+      font-size: 18px;
+    }
+  
+    .input-search {
+      width: 200px;
+      position: absolute;
+      left: 10px;
+      top: 120px;
+    }
+
+    .plus {
+      position: absolute;
+      left: 350px;
+      top: 90px;
+      font-size: 20px;
+    }
+  
+    .table-data {
+      margin-top: 50px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-bottom: 400px;
+    }
+
+    .table-head {
+      font-size: 10px;
+    }
+
+    .table-body {
+      font-size: 10px;
+    }
+
     .first-container {
       margin-top: 10px;
     }
@@ -589,6 +644,43 @@
       position: relative;
       bottom: 5px;
       left: 5%;
+    }
+
+    .table {
+      margin-top: 30px;
+    }
+  
+    .table-data-title {
+      font-size: 16px;
+    }
+  
+    .input-search {
+      width: 150px;
+      position: absolute;
+      left: 10px;
+      top: 120px;
+    }
+
+    .plus {
+      position: absolute;
+      left: 290px;
+      top: 90px;
+      font-size: 20px;
+    }
+  
+    .table-data {
+      margin-top: 50px;
+      margin-left: 1px;
+      margin-right: 1px;
+      margin-bottom: 270px;
+    }
+
+    .table-head {
+      font-size: 9px;
+    }
+
+    .table-body {
+      font-size: 9px;
     }
 
     .first-container {
