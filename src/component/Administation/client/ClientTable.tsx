@@ -21,7 +21,9 @@ const ClientsTable = (props: Props) => {
   return (
     <div className="background-app">
       <div className="table d-flex justify-content-between">
-        <h3 className="table-data-title">Tableau des Clients</h3>
+        <h3 className="table-data-title" style={{ marginLeft: 10 }}>
+          Tableau des Clients
+        </h3>
         <div className="input-search">
           <Input
             type="text"
@@ -40,11 +42,11 @@ const ClientsTable = (props: Props) => {
             <tr className="table-head">
               <th>Nom</th>
               <th>Prénom</th>
-              <th>password</th>
-              <th>Numéro de téléphone</th>
-              <th>adresse</th>
+              <th>Pass</th>
+              <th>N°Téléphone</th>
+              <th>Adresse</th>
               <th>Photo</th>
-              <th>Num-CIN</th>
+              <th>N°CIN</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>

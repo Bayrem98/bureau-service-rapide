@@ -58,11 +58,7 @@ const ProfessionelProfil = () => {
     }
   };
 
-  const handelAvis = (
-    selectedOuvrier: Ouvrier,
-    rate: number,
-    reclamation: string
-  ) => {
+  const handelAvis = (selectedOuvrier: Ouvrier, rate: number) => {
     console.log("Ouvrier dans handelAvis :", selectedOuvrier);
     if (!selectedOuvrier) {
       console.error("Ouvrier non défini !");
@@ -70,15 +66,17 @@ const ProfessionelProfil = () => {
     }
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/ouvrier/updateavis/${selectedOuvrier._id}`, {
-        avis: rate,
-        reclamation: reclamation,
-      })
+      .put(
+        `${process.env.REACT_APP_API_URL}/ouvrier/updateavis/${selectedOuvrier._id}`,
+        {
+          avis: rate,
+        }
+      )
       .then((response) => {
         console.log("Avis ajouté pour l'ouvrier", response.data);
         const updatedOuvriers = ouvriers.map((ouv) => {
           if (ouv._id === selectedOuvrier._id) {
-            return { ...ouv, avis: rate, reclamation: reclamation };
+            return { ...ouv, avis: rate };
           }
           return ouv;
         });
@@ -91,8 +89,32 @@ const ProfessionelProfil = () => {
 
   const handleRating = (rate: number) => {
     if (ouvrier) {
-      handelAvis(ouvrier, rate, reclamation);
+      handelAvis(ouvrier, rate);
     }
+  };
+
+  const handleSubmitReclamation = () => {
+    if (!ouvrier || !reclamation) {
+      console.error("Ouvrier ou réclamation non définis !");
+      return;
+    }
+
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/ouvrier/updatereclam/${ouvrier._id}`,
+        {
+          reclamation: reclamation,
+        }
+      )
+      .then((response) => {
+        console.log("Réclamation envoyée pour l'ouvrier", response.data);
+        // Mettre à jour l'état de l'ouvrier ou de la liste des ouvriers ici
+        // Peut-être fermer la fenêtre modale après succès
+        handleClose();
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'envoi de la réclamation", error);
+      });
   };
 
   return (
@@ -262,11 +284,7 @@ const ProfessionelProfil = () => {
                 />
               </FormGroup>
               <Button
-                onClick={() => {
-                  if (ouvrier) {
-                    handelAvis(ouvrier, 0, reclamation);
-                  }
-                }}
+                onClick={handleSubmitReclamation}
                 style={{ float: "right" }}
               >
                 Valider

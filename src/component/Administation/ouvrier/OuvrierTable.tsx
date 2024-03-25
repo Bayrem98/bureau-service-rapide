@@ -22,7 +22,9 @@ const OuvriersTable = (props: Props) => {
   return (
     <div className="background-app">
       <div className="table d-flex justify-content-between">
-        <h3 className="table-data-title">Tableau des Ouvriers</h3>
+        <h3 className="table-data-title" style={{ marginLeft: 10 }}>
+          Tableau des Ouvriers
+        </h3>
         <div className="input-search">
           <Input
             type="text"
@@ -41,14 +43,15 @@ const OuvriersTable = (props: Props) => {
             <tr className="table-head">
               <th>Nom</th>
               <th>Prénom</th>
-              <th>password</th>
-              <th>Numéro de téléphone</th>
+              <th>Pass</th>
+              <th>N°Téléphone</th>
               <th>Adresse</th>
               <th>Profession</th>
               <th>Photo</th>
-              <th>Num-CIN</th>
-              <th>Description</th>
-              <th>Reclamation</th>
+              <th>N°CIN</th>
+              <th>Avis</th>
+              <th>Déscription</th>
+              <th>Réclamation</th>
               <th style={{ textAlign: "center" }}>Action</th>
             </tr>
           </thead>
@@ -74,6 +77,7 @@ const OuvriersTable = (props: Props) => {
                       />
                     </td>
                     <td>{ouvrier.num_cin}</td>
+                    <td>{ouvrier.avis}/Cinq</td>
                     <td>{ouvrier.description}</td>
                     <td>{ouvrier.reclamation}</td>
                     <td style={{ textAlign: "center" }}>

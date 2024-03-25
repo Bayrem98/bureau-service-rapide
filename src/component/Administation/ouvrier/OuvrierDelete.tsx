@@ -3,7 +3,7 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import Ouvrier from "../../../@types/Ouvrier";
 import { deleteOuvrier } from "../../../actions/Ouvrier/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRemove } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface OuvrierDeletePropsType {
   ouvrier: Ouvrier;
@@ -23,7 +23,16 @@ const OuvrierDelete = ({ ouvrier, refresh }: OuvrierDeletePropsType) => {
   return (
     <>
       <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
-        <FontAwesomeIcon icon={faRemove} />
+        <Button
+          style={{
+            backgroundColor: "red",
+            color: "white",
+            border: 0,
+            width: 50,
+          }}
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </Button>
       </span>
       <Modal
         className="font-['Helvetica']"

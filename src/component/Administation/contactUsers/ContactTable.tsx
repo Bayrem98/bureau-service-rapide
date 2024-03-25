@@ -21,10 +21,10 @@ const ContactsTable = (props: Props) => {
       <div className="background-app">
         <div className="table d-flex justify-content-between">
           {" "}
-          <h3 className="table-data-title">
+          <h3 className="table-data-title" style={{ marginLeft: 10 }}>
             Message et Commentaire des Utilisateurs
           </h3>
-          <div className="input-search">
+          <div className="input-search" style={{ marginRight: 10 }}>
             <Input
               type="text"
               placeholder="Chercher içi..."
@@ -39,9 +39,9 @@ const ContactsTable = (props: Props) => {
               <tr className="table-head">
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Numéro de Tél</th>
+                <th>N°Téléphone</th>
                 <th>Email</th>
-                <th>Message/Commentaire</th>
+                <th>Message ou Commentaire</th>
                 <th>Action</th>
               </tr>
             </thead>

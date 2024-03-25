@@ -134,7 +134,17 @@ const OuvrierEdit = ({ ouvrier, refresh }: OuvrierEditPropsType) => {
   return (
     <>
       <span onClick={() => setIsOpened(true)} style={{ cursor: "pointer" }}>
-        <FontAwesomeIcon icon={faPen} width={50} />
+        <Button
+          style={{
+            backgroundColor: "#ffcc00",
+            color: "black",
+            border: 0,
+            width: 50,
+            marginRight: 3,
+          }}
+        >
+          <FontAwesomeIcon icon={faPen} />
+        </Button>
       </span>
       <Modal
         centered
