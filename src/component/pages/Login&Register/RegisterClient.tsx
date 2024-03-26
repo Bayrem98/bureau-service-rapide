@@ -59,7 +59,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
       num_cin,
     };
     addClient(newClient, () => {
-      navigate("/");
+      navigate("https://api.konnect.network/cS67Xntl8");
       props.refresh();
       reset();
     });

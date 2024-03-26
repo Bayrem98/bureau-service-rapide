@@ -86,7 +86,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
       num_cin,
     };
     addOuvrier(newOuvrier, () => {
-      navigate("/");
+      navigate("https://api.konnect.network/cS67Xntl8");
       props.refresh();
       reset();
     });
