@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { HowToReg } from "@mui/icons-material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { addClient } from "../../../actions/Client/action";
 
 interface ClientAddPropsType {
@@ -46,8 +45,6 @@ const RegisterClient = (props: ClientAddPropsType) => {
       });
   };
 
-  const navigate = useNavigate();
-
   const handleRegister = async () => {
     const newClient = {
       nom,
@@ -59,7 +56,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
       num_cin,
     };
     addClient(newClient, () => {
-      navigate("https://api.konnect.network/cS67Xntl8");
+      window.location.replace("https://api.konnect.network/cS67Xntl8");
       props.refresh();
       reset();
     });

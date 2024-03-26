@@ -14,7 +14,6 @@ import {
 import { HowToReg } from "@mui/icons-material";
 import { useState } from "react";
 import { addOuvrier } from "../../../actions/Ouvrier/action";
-import { useNavigate } from "react-router-dom";
 
 const fieldss = [
   { key: "jardinier", name: "Jardinier" },
@@ -72,8 +71,6 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
       });
   };
 
-  const navigate = useNavigate();
-
   const handleRegister = async () => {
     const newOuvrier = {
       nom,
@@ -86,7 +83,7 @@ const RegisterOuvrier = (props: OuvrierAddPropsType) => {
       num_cin,
     };
     addOuvrier(newOuvrier, () => {
-      navigate("https://api.konnect.network/cS67Xntl8");
+      window.location.replace("https://api.konnect.network/cS67Xntl8");
       props.refresh();
       reset();
     });
