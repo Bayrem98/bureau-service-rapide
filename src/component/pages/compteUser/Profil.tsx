@@ -148,7 +148,7 @@ const Profile = () => {
             {client && (
               <>
                 <Link
-                  to={`/demandeenattente/:userId`}
+                  to={`/demandeenattente/${userId}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <ListItemButton>
@@ -160,7 +160,7 @@ const Profile = () => {
                 </Link>
 
                 <Link
-                  to={"/demandecloturee/:userId"}
+                  to={`/demandecloturee/${userId}`}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   <ListItemButton>

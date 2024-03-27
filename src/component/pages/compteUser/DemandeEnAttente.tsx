@@ -33,8 +33,6 @@ const DemandeEnAttente = () => {
 
   const handleClickRemove = () => {
     localStorage.removeItem("selectedOuvrier");
-    setOuvrier(null);
-    window.location.replace(`/demandecloturee/${ouvrier?._id}`);
   };
 
   const now = new Date();

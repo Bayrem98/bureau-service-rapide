@@ -51,11 +51,17 @@ const ProfessionelProfil = () => {
     }
   }, [prof, userId, ouvriers]);
 
-  const handleClick = (selectedOuvrier: Ouvrier) => {
+  const handleClick = (selectedOuvrier: any) => {
     setOuvrier(selectedOuvrier);
     if (selectedOuvrier._id) {
       setBoutonValider(selectedOuvrier._id);
     }
+    localStorage.setItem("selectedOuvrier", selectedOuvrier._id);
+  };
+
+  const handleClickRemove = () => {
+    localStorage.removeItem("selectedOuvrier");
+    window.location.reload();
   };
 
   const handelAvis = (selectedOuvrier: Ouvrier, rate: number) => {
@@ -187,16 +193,10 @@ const ProfessionelProfil = () => {
                     >
                       <div>
                         <Typography level="body-xs" fontWeight="lg">
-                          Travail
-                        </Typography>
-                        <Typography fontWeight="lg">180</Typography>
-                      </div>
-                      <div>
-                        <Typography level="body-xs" fontWeight="lg">
                           Avis
                         </Typography>
                         <Rating
-                          size={30}
+                          size={35}
                           initialValue={ouvrier.avis}
                           onClick={handleRating}
                         />
@@ -209,19 +209,34 @@ const ProfessionelProfil = () => {
                         "& > button": { flex: 1 },
                       }}
                     >
-                      <Card variant="outlined" color="primary">
+                      <Card
+                        variant="outlined"
+                        color="primary"
+                        style={{ height: 60 }}
+                      >
                         {ouvrier.num_tel}
                       </Card>
                       {boutonValider === ouvrier._id && ouvrier._id ? (
-                        <Link to={`/demandeenattente/${ouvrier._id}`}>
-                          <Button
-                            color="success"
-                            style={{ height: 60 }}
-                            onClick={() => handleClick(ouvrier)}
-                          >
-                            Valider la demande
-                          </Button>
-                        </Link>
+                        <div>
+                          <Link to={`/demandeenattente/${ouvrier._id}`}>
+                            <Button
+                              color="success"
+                              style={{ height: 60 }}
+                              onClick={() => handleClick(ouvrier)}
+                            >
+                              Valider la demande
+                            </Button>
+                          </Link>
+                          <div>
+                            <Button
+                              color="danger"
+                              style={{ height: 50, width: 90 }}
+                              onClick={handleClickRemove}
+                            >
+                              Annuler
+                            </Button>
+                          </div>
+                        </div>
                       ) : (
                         <a
                           href={`https://wa.me/21652368419?text=je veux contacter ${ouvrier.nom} ${ouvrier.prenom} le ${ouvrier.profession}`}

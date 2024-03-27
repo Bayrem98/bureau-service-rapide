@@ -15,8 +15,19 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import Ouvrier from "../../../@types/Ouvrier";
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import { getOuvriers } from "../../../actions/Ouvrier/action";
 
 const MesReclamations = () => {
+  const [ouvriers, setOuvriers] = useState<Ouvrier[]>([]);
+
+  useEffect(() => {
+    getOuvriers(null, setOuvriers);
+  }, []);
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -76,87 +87,50 @@ const MesReclamations = () => {
             </Link>
           </List>
         </div>
-        <div style={{ marginTop: 100, marginRight: 150, marginBottom: 500 }}>
-          <Card sx={{ display: "flex", width: 750 }}>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" variant="h5">
-                  Nom de Professionel 1
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  01/02/2024
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  Champ de reclamation
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-              ></Box>
-            </Box>
-          </Card>
-          <br />
-          <Card sx={{ display: "flex", width: 750 }}>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" variant="h5">
-                  Nom de Professionel 2
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  05/02/2024
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  Champ de reclamation
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-              ></Box>
-            </Box>
-          </Card>
-          <br />
-          <Card sx={{ display: "flex", width: 750 }}>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <CardContent sx={{ flex: "1 0 auto" }}>
-                <Typography component="div" variant="h5">
-                  Nom de Professionel 3
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  08/02/2024
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                  Champ de reclamation
-                </Typography>
-              </CardContent>
-              <Box
-                sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-              ></Box>
-            </Box>
-          </Card>
+        <div style={{ marginTop: 100, marginRight: 150, marginBottom: 300 }}>
+          {ouvriers.length ? (
+            ouvriers.map((ouvrier) => (
+              <Card key={ouvrier._id} sx={{ display: "flex", width: 750 }}>
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: "1 0 auto" }}>
+                    <Typography component="div" variant="h5">
+                      {ouvrier.nom} {ouvrier.prenom}
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pl: 1,
+                        pb: 1,
+                      }}
+                    >
+                      {ouvrier.profession}
+                    </Box>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      01/02/2024
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      {ouvrier.reclamation}
+                    </Typography>
+                  </CardContent>
+                </Box>
+              </Card>
+            ))
+          ) : (
+            <span className="text-center" style={{position: "relative", right: 220}}>
+              <FontAwesomeIcon icon={faBoxOpen} size="6x" />
+              <br />
+              Pas des données ici...
+            </span>
+          )}
         </div>
       </div>
     </>

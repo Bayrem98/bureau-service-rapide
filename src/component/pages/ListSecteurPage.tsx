@@ -452,7 +452,12 @@ const ListSecteurPage = () => {
                 <Collapse in={expanded5} timeout="auto" unmountOnExit>
                   <CardContent>
                     <Typography>*Conseiller d'agricole</Typography>
-                    <Typography>*Jardinier/fleuriste</Typography>
+                    <Link
+                      to={"/professionel/jardinier"}
+                      style={{ textDecoration: "none" }}
+                    >
+                    <Typography>*Jardinier</Typography>
+                    </Link>
                     <Typography>*Soigneur animalier</Typography>
                     <Typography>*Assistante paysagiste</Typography>
                   </CardContent>
