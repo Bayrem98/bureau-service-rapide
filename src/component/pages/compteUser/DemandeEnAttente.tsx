@@ -23,32 +23,30 @@ import { Button } from "@mui/material";
 
 const DemandeEnAttente = () => {
   const [ouvrier, setOuvrier] = useState<Ouvrier | null>(null);
+  const [date, setDate] = useState<string>(
+    localStorage.getItem("dateDemande") || ""
+  );
 
   useEffect(() => {
     const storedOuvrierId = localStorage.getItem("selectedOuvrier");
     if (storedOuvrierId) {
-      getOuvrier(storedOuvrierId, setOuvrier);
+      getOuvrier(storedOuvrierId, (result: Ouvrier) => {
+        setOuvrier(result);
+        if (!date) {
+          const now = new Date();
+          const dateString = now.toLocaleDateString();
+          localStorage.setItem("dateDemande", dateString);
+          setDate(dateString);
+        }
+      });
     }
-  }, []);
+  }, [date]);
 
   const handleClickRemove = () => {
     localStorage.removeItem("selectedOuvrier");
+    localStorage.removeItem("dateDemande");
+    setDate(""); // Réinitialiser la date dans l'état local
   };
-
-  const now = new Date();
-
-  const [date, setDate] = useState<string>(now.toLocaleDateString());
-
-  useEffect(() => {
-    const date = setInterval(
-      (): void => setDate(now.toLocaleDateString()),
-      1000
-    );
-    return () => {
-      clearInterval(date);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
