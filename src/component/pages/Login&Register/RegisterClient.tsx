@@ -56,7 +56,7 @@ const RegisterClient = (props: ClientAddPropsType) => {
       num_cin,
     };
     addClient(newClient, () => {
-      window.location.replace("/");
+      window.location.replace("https://api.konnect.network/cS67Xntl8");
       props.refresh();
       reset();
     });
