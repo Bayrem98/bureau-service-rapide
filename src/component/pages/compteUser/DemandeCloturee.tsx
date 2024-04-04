@@ -95,12 +95,16 @@ const DemandeCloturee = () => {
             </Link>
           </List>
         </div>
-        <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
-          <Card sx={{ display: "flex", width: 750 }} key={ouvrier?._id}>
+        <div className="section-demande">
+          <Card
+            className="card-demande"
+            sx={{ display: "flex" }}
+            key={ouvrier?._id}
+          >
             <CardMedia
               component="img"
               sx={{ width: 170 }}
-              image={ouvrier?.coverPath}
+              src={ouvrier?.coverPath || "/image/avatar/image-indisponible.jpg"}
               alt="."
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -127,7 +131,10 @@ const DemandeCloturee = () => {
                   color="text.secondary"
                   component="div"
                 >
-                  <span style={{ fontWeight: "bold" }}> Demande Cloturée</span>
+                  <span style={{ fontWeight: "bold", color: "green" }}>
+                    {" "}
+                    Demande Cloturée
+                  </span>
                 </Typography>
               </CardContent>
               <Box

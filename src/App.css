@@ -279,6 +279,27 @@
     align-items: center;
   }
 
+  .section-demande {
+    margin-top: 100px;
+    margin-bottom: 450px;
+    margin-right: 300px;
+  }
+
+  .card-demande {
+    width: 550px;
+    margin-left: 5px;
+  }
+
+  .section-reclam {
+    margin-top: 50px;
+    margin-bottom: 520px;
+  }
+
+  .card-reclam {
+    width: 350px;
+    margin-left: 5px;
+  }
+
 
   @media screen and (max-width: 430px) {
 
@@ -553,6 +574,26 @@
       flex-direction: column;
       align-items: center;
       margin-left: 50px;
+    }
+    
+    .section-demande {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .card-demande {
+      width: 525px;
+      margin-left: 1px;
+    }
+
+    .section-reclam {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .card-reclam {
+      width: 410px;
+      margin-left: 10px;
     }
   }
 
@@ -837,5 +878,25 @@
       flex-direction: column;
       align-items: center;
       margin-left: 20px;
+    }
+
+    .section-demande {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .card-demande {
+      width: 525px;
+      margin-left: 5px;
+    }
+
+    .section-reclam {
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .card-reclam {
+      width: 350px;
+      margin-left: 5px;
     }
   }

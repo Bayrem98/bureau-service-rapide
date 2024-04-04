@@ -111,12 +111,18 @@ const DemandeEnAttente = () => {
           </List>
         </div>
         {ouvrier ? (
-          <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
-            <Card sx={{ display: "flex", width: 750 }} key={ouvrier._id}>
+          <div className="section-demande">
+            <Card
+              className="card-demande"
+              sx={{ display: "flex" }}
+              key={ouvrier._id}
+            >
               <CardMedia
                 component="img"
                 sx={{ width: 170 }}
-                image={ouvrier.coverPath}
+                src={
+                  ouvrier?.coverPath || "/image/avatar/image-indisponible.jpg"
+                }
                 alt="."
               />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -166,9 +172,14 @@ const DemandeEnAttente = () => {
             </Card>
           </div>
         ) : (
-          <div style={{ marginTop: 100, marginRight: 100, marginBottom: 500 }}>
-            <Card sx={{ display: "flex", width: 750 }}>
-              <CardMedia component="img" sx={{ width: 170 }} image="" alt="." />
+          <div className="section-demande">
+            <Card className="card-demande" sx={{ display: "flex" }}>
+              <CardMedia
+                component="img"
+                sx={{ width: 170 }}
+                image="/image/avatar/image-indisponible.jpg"
+                alt="."
+              />
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
                   <Typography component="div" variant="h5">
@@ -193,7 +204,7 @@ const DemandeEnAttente = () => {
                     color="text.secondary"
                     component="div"
                   >
-                    <span style={{ fontWeight: "bold" }}>
+                    <span style={{ fontWeight: "bold", fontSize: 12 }}>
                       {" "}
                       Date de Demande: JJ/MM/AA
                     </span>
