@@ -28,7 +28,7 @@ export function loginC(
   fallback: () => void
 ) {
   axios
-    .post(`https://localhost:3000/auth/login`, {
+    .post(`${process.env.REACT_APP_API_URL}/auth/login`, {
       num_tel: num_tel,
       password: pass,
     })
